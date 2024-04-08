@@ -1,10 +1,11 @@
-
+/*
 .main-container{
 	margin-left: 100px;
 	margin-right: 100px;
 	margin-top: 50px;
 	margin-bottom: 50px;
   }
+ */
 
 .input-group{
 	display: inline-block;
@@ -156,8 +157,20 @@
 .button:hover {
     background-color: #F7E8E5; 
 }
-
+.menu-container{
+    background: #970A2C;
+    padding: 15px;
+}
 .menu-element{
     display: inline;
-    padding: 10px
+    padding: 10px;
+    color: white;
+}
+.route-container{
+    margin: 0;
+    background: #E6E4E4;
+}
+.route-element{
+    margin: 0;
+    padding: 10px;
 }
