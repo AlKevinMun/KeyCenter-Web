@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Logo from "./Logo.jsx";
-import NavMenu from "./NavMenu.jsx"
-import NavRoute from "./NavRoute.jsx"
+import Logo from "../components/Logo.jsx";
+import NavMenu from "../components/NavMenu.jsx"
+import NavRoute from "../components/NavRoute.jsx"
 
 function MainPage() {
  return (

@@ -6,7 +6,9 @@
 	margin-bottom: 50px;
   }
  */
-
+body{
+    margin: 0;
+}
 .input-group{
 	display: inline-block;
 	vertical-align: top;
@@ -160,11 +162,19 @@
 .menu-container{
     background: #970A2C;
     padding: 15px;
+    padding-left: 20px;
 }
 .menu-element{
     display: inline;
     padding: 10px;
     color: white;
+}
+.menu-link{
+    color: white;
+    text-decoration: none;
+}
+.menu-link::hover{
+    color:white;
 }
 .route-container{
     margin: 0;
@@ -173,4 +183,7 @@
 .route-element{
     margin: 0;
     padding: 10px;
+}
+.logo-container{
+    padding-left: 20px;
 }

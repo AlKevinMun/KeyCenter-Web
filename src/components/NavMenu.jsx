@@ -1,19 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function NavMenu() {
  return (
-    React.createElement('div', { className: 'menu-container' },
-      React.createElement('p', { className: 'menu-element'}, 'Inici'),
-      React.createElement('p', { className: 'menu-element'}, 'El centre'),
-      React.createElement('p', { className: 'menu-element'}, 'Secretaria'),
-      React.createElement('p', { className: 'menu-element'}, 'ESO'),
-      React.createElement('p', { className: 'menu-element'}, 'Batxillerat'),
-      React.createElement('p', { className: 'menu-element'}, 'Cicles Formatius'),
-      React.createElement('p', { className: 'menu-element'}, 'Departaments'),
-      React.createElement('p', { className: 'menu-element'}, 'Serveis'),
-      React.createElement('p', { className: 'menu-element'}, 'International Office'),
-      React.createElement('p', { className: 'menu-element'}, 'AMPA'),
-      React.createElement('p', { className: 'menu-element'}, 'KeyCenter'),
+    React.createElement('nav', { className: "nav-container" },
+      React.createElement('div', { className: "menu-container" },
+        React.createElement('ul', { className: "menu-table" },
+          React.createElement('li', { className: "menu-element" },
+            React.createElement(Link, { to: "/", className: "menu-link" },
+              React.createElement('strong', null, 'Inici')
+            )
+          ),
+          React.createElement('li', { className: "menu-element" },
+            React.createElement(Link, { to: "/Llaves", className: "menu-link" },
+              React.createElement('strong', null, 'Llaves')
+            )
+          ),
+          React.createElement('li', { className: "menu-element" },
+            React.createElement(Link, { to: "/Incidencias", className: "menu-link" },
+              React.createElement('strong', null, 'Incidencias')
+            )
+          ),
+          React.createElement('li', { className: "menu-element" },
+            React.createElement(Link, { to: "/Manuales", className: "menu-link" },
+              React.createElement('strong', null, 'Manuales')
+            )
+          ),
+        )
+      )
     )
  );
 }
