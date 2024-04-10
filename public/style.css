@@ -187,3 +187,19 @@ body{
 .logo-container{
     padding-left: 20px;
 }
+
+.content-containet{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.data-container{
+    padding: 3em 2em 0 2em;
+}
+.folders-container{
+    padding: 3em 0 0 5em;
+}
+
+.service-keys-container{
+    padding: 3em 5em 0 0;
+}

@@ -8,7 +8,18 @@ function MainPage() {
     React.createElement('div', { className: 'main-container' },
       Logo('resources/logotipoWeb.png'),
       NavMenu(),
-      NavRoute('Algún metodo para identificar el rango jerárquico actual de la pagina (UseState)')
+      NavRoute(),
+      React.createElement('div', {className: 'content-containet'},
+        React.createElement('div', {className: 'folders-container'},
+          React.createElement('p',null,'Prueba para ver como se ve este apartado to guapo'),
+        ),
+        React.createElement('div', {className: 'data-container'},
+          React.createElement('p',null,'Prueba para ver como se ve este apartado to guapo'),
+        ),
+        React.createElement('div', {className: 'service-keys-container'},
+          React.createElement('p',null,'Prueba para ver como se ve este apartado to guapo'),
+        )
+      )
     )
  );
 }
