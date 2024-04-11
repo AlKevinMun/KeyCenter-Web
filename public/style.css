@@ -183,6 +183,7 @@ body{
 .route-element{
     margin: 0;
     padding: 10px;
+    padding-left: 70px;
 }
 .logo-container{
     padding-left: 20px;
@@ -228,4 +229,7 @@ body{
 }
 .folder-link::hover{
     color: black;
+}
+.child-folder-element{
+    padding-left: 20px
 }

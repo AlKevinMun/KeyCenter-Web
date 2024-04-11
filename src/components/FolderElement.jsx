@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FolderElement = ({ path, name, icon }) => {
+const FolderElement = ({ path, name, icon, className }) => {
  return React.createElement(
     'li',
-    { className: "folder-element" },
+    { className: className || "folder-element" }, // Utiliza el className proporcionado o el predeterminado
     React.createElement(
       Link,
       { to: path, className: "folder-link" },
