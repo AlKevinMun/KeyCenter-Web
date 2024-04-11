@@ -161,7 +161,7 @@ body{
 }
 .menu-container{
     background: #970A2C;
-    padding: 15px;
+    padding: 5px;
     padding-left: 20px;
 }
 .menu-element{
@@ -202,4 +202,30 @@ body{
 
 .service-keys-container{
     padding: 3em 5em 0 0;
+}
+
+.folder-table{
+    border-radius: 5px;
+    list-style-type: none;
+    border-radius: 3px;
+}
+.folder-element{
+    border:1px solid grey;
+}
+
+.folder-icon{
+    color: grey;
+    width: 32px;
+    height: 32px;
+    margin: 16px 10px 16px 10px;
+}
+.folder-link{
+    display: inline-flex;
+    color: black;
+    text-decoration: none;
+    align-items: center;
+    width: 100%;
+}
+.folder-link::hover{
+    color: black;
 }

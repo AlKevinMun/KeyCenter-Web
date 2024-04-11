@@ -1,0 +1,25 @@
+
+[
+  {
+    "path": "/Llaves",
+    "name": "Llaves",
+    "icon": "resources/folderIcon.png"
+  },
+  {
+    "path": "/Incidencias",
+    "name": "Incidencias",
+    "icon": "resources/folderIcon.png"
+  },
+  {
+    "path": "/Manuales",
+    "name": "Manuales",
+    "icon": "resources/folderIcon.png",
+    "children": [
+      {
+        "path": "/Manuales/ManualUso",
+        "name": "Manual de Uso",
+        "icon": "resources/folderIcon.png"
+      }
+    ]
+  }
+]

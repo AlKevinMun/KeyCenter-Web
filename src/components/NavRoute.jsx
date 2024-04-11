@@ -18,8 +18,6 @@ function NavRoute(route) {
           setFormattedPath(formatted);
         }
      }, [location.pathname]); // Dependencia en location.pathname para actualizar cuando cambie la ruta
-    console.log(location.pathname+' Localización')
-    console.log(formattedPath+' Texto ya formateado')
 
     return (
         React.createElement('div', { className: 'route-container' },
