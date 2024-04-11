@@ -3,6 +3,7 @@ import Logo from "../components/Logo.jsx";
 import NavMenu from "../components/NavMenu.jsx"
 import NavRoute from "../components/NavRoute.jsx"
 import FolderTree from "../components/FolderTree.jsx"
+import TitleForm from "../components/TitleForm.jsx"
 
 function MainPage() {
  return (
@@ -15,7 +16,7 @@ function MainPage() {
           FolderTree(),
         ),
         React.createElement('div', {className: 'data-container'},
-          React.createElement('p',null,'Prueba para ver como se ve este apartado to guapo'),
+          TitleForm('KeyCenter'),
         ),
         React.createElement('div', {className: 'service-keys-container'},
           React.createElement('p',null,'Prueba para ver como se ve este apartado to guapo'),

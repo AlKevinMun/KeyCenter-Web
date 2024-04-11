@@ -9,6 +9,13 @@
 body{
     margin: 0;
 }
+.container-label{
+    margin: 0;
+    font-size: 30px;
+}
+.container-label-line{
+    color: #EF902A
+}
 .input-group{
 	display: inline-block;
 	vertical-align: top;
@@ -184,6 +191,7 @@ body{
     margin: 0;
     padding: 10px;
     padding-left: 70px;
+    color: #797979;
 }
 .logo-container{
     padding-left: 20px;
