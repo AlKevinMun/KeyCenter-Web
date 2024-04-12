@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function InputSelector(name, data, plural, onChange) {
+function InputSelector(name, data, plural, onChange, onBlur) {
   //Si se diera el caso de que la información dada por la api fuera NULL, se mostraria los datos por defecto.
   if (data === null) {
     return (
@@ -25,11 +25,22 @@ function InputSelector(name, data, plural, onChange) {
         options = data.provincias.map((item, index) => {
           return React.createElement('option', { key: item.paisId, value: item.paisId }, item.nombre);
         });
-      } else if (name === 'Año de titulación') {
+      } else if (name === 'Año de titulación' || name === 'Año de inicio') {
         options = [];
         for (let year = 2024; year >= 1924; year--) {
            options.push(React.createElement('option', { key: year, value: year }, year));
         }
+      } else if (name === 'Año de fin') {
+        options = [];
+        for (let year = 2024; year <= 2124; year++) {
+           options.push(React.createElement('option', { key: year, value: year }, year));
+        }
+      } else if (name === 'Mes de inicio' || name === 'Mes de fin' ) {
+        options = [];
+        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        meses.forEach((mes, index) => {
+          options.push(React.createElement('option', { key: index, value: mes }, mes));
+       });
       }
     }
     else if (data.perfilprofesional === undefined) {
@@ -43,20 +54,12 @@ function InputSelector(name, data, plural, onChange) {
       else {
         console.log(data.items.perfilprofesional[plural]);
         data.items.perfilprofesional[plural].forEach(item => {
-          console.log(JSON.stringify(item.especialidades) + 'test primer map')
-          /*item.especialidades.forEach(element => {
-            console.log(element,'Prueba for each')
-          });*/
           item.especialidades.map((especialidad, index) => {
-            console.log(especialidad, 'test segundo map')
-            console.log(especialidad.id, 'ID')
-            console.log(especialidad.name.name, 'Nombre')
             let idEspecialidad = especialidad.id
             let nombreEspecialidad = especialidad.name.name
             options.push(React.createElement('option', { key: idEspecialidad, value: idEspecialidad }, nombreEspecialidad))
           })
         });
-        console.log(options, 'datos options')
       }
     }
 
@@ -68,17 +71,13 @@ function InputSelector(name, data, plural, onChange) {
         return React.createElement('option', { key: item.id, value: item.id }, nameI18n);
       });
     }
-    console.log(options, 'datos options final')
-    if(options === undefined){
-      console.log('Options esta indefinido')
-    } else{ 
-    console.log('Options esta definido')
+
     return (
       React.createElement('div', { className: 'input-group' },
         React.createElement('label', { className: 'input-label' }, name),
-        React.createElement('select', { className: 'input', onChange: onChange }, ...options)
+        React.createElement('select', { className: 'input', name: name.toLowerCase() ,onChange: onChange, onBlur: onBlur}, ...options)
       )
-    );}
+    );
   }
 
 }

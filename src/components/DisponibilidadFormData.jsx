@@ -3,10 +3,10 @@ import InputSelector from "./InputSelector.jsx";
 import InputDate from "./InputDate.jsx";
 
 
-function DisponibilidadFormData(){
+function DisponibilidadFormData(items){
   return(
     React.createElement('div', {className: 'working-group'},
-        InputSelector('Disponibilidad',null,null,null),
+        InputSelector('Disponibilidad',items,'Duracion',null),
         InputDate('Periodo (Desde - Hasta)')
     )
   );

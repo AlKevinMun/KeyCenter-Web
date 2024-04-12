@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Logo from "../components/Logo.jsx";
 import NavMenu from "../components/NavMenu.jsx"
 import NavRoute from "../components/NavRoute.jsx"

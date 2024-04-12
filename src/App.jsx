@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { Route, Routes } from "react-router-dom";
-import MainContainer from "./components/MainContainer.jsx"
+//import MainContainer from "./components/MainContainer.jsx"
 import KeyCenterMain from "./pages/KeyCenterMain.jsx"
 import KeysMain from "./pages/KeysMain.jsx"
 import ManualMain from "./pages/ManualMain.jsx"
