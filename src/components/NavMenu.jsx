@@ -26,6 +26,11 @@ function NavMenu() {
               React.createElement('strong', null, 'Manuales')
             )
           ),
+          React.createElement('li', { className: "menu-element menu-login" },
+            React.createElement(Link, { to: "/SignIn", className: "menu-link" },
+              React.createElement('strong', null, 'Log In')
+            )
+          ),
         )
       )
     )

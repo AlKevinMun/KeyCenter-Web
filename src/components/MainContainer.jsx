@@ -455,8 +455,7 @@ function Disponibilidad({ items }) {
       TitleForm('DISPONIBILIDAD ACTUAL DE PARTICIPACIÓN'),
       React.createElement('div', { className: 'form-container' },
         React.createElement(AddButton, { name: 'Añadir nueva experiencia profesional', onClick2: addNewComponent }),
-        React.createElement('form', null,
-          components.map(component => React.createElement(component.component, { key: component.id, items: items })),
+        React.createElement('form', null, components.map(component => React.createElement(component.component, { key: component.id, items: items })),
           React.createElement('div', { className: 'submit-container' },
             React.createElement('input', { type: 'button', className: 'cancel-button', value: 'Cancelar' }),
             React.createElement('input', { type: 'button', className: 'save-button', value: 'Guardar' })

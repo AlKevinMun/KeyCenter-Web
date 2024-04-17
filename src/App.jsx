@@ -5,7 +5,9 @@ import KeyCenterMain from "./pages/KeyCenterMain.jsx"
 import KeysMain from "./pages/KeysMain.jsx"
 import ManualMain from "./pages/ManualMain.jsx"
 import ManualUso from "./pages/ManualUso.jsx"
-
+import SignIn from "./pages/SignIn.jsx"
+import SignUp from "./pages/SignUp.jsx"
+import Ayuda from "./pages/Ayuda.jsx"
 
 
   function App() {
@@ -15,6 +17,9 @@ import ManualUso from "./pages/ManualUso.jsx"
             React.createElement(Route, {path:"/Incidencias", element: React.createElement('p', null, 'Work in progress')}),
             React.createElement(Route, {path:"/Manuales", element: ManualMain() }),
             React.createElement(Route, {path:"/Manuales/ManualUso", element: ManualUso() }),
+            React.createElement(Route, {path:"/SignUp", element: SignUp() }),
+            React.createElement(Route, {path:"/SignIn", element: SignIn() }),
+            React.createElement(Route, {path:"/Ayuda", element: Ayuda() }),
     );
   }
   

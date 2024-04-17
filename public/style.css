@@ -9,21 +9,36 @@
 body{
     margin: 0;
 }
+
 .container-label{
     margin: 0;
     font-size: 30px;
 }
-.container-label-line{
-    color: #EF902A
+
+.form-title{
+    margin: 0;
+    font-size: 30px;
+    text-align: center;
 }
+.container-label-line{
+    color: #EF902A;
+    margin-bottom: 1em;
+}
+
+.container-label-line1{
+    color: #D8D8D8;
+    margin-bottom: 1em;
+}
+
 .input-group{
-	display: inline-block;
+	display: block;
 	vertical-align: top;
 	margin-bottom: 20px;
 	margin-left: 3.33%;
 	margin-right: 3.33%;
-	width: 20%;
+	width: 100%;
 }
+/*
 .input-group:nth-child(1),
 .input-group:nth-child(5),
 .input-group:nth-child(9){
@@ -36,9 +51,11 @@ body{
 	margin-right: 0;
 	margin-left: 3.34%;
 }
+*/
 .input-label{
 	display: block;
 	margin-bottom: 10px;
+	width: 100%;
 }
 .input{
 	padding: 10px;
@@ -74,11 +91,25 @@ body{
 }
 /* Estilo para los botones de añadir */
 .button-group {
-	display: inline-block;
-	text-align: right;
-	color: #808080;
-	width: 100%; 
-	box-sizing: border-box; 
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #970A2C;
+	color: white;
+	width: 25%;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.button-group1 {
+	display: block;
+	text-align: center;
+	background-color: #E7E7E7;
+	color: #2E2E2E;
+	width: 50%;
+	border-radius: 5px;
+	box-sizing: border-box;
+    margin: 0 2% 0 2%;
 }
 
 .button-label {
@@ -113,6 +144,11 @@ body{
 	height: 30px;
 	width: 14px;
 }
+
+.input[type="text"] {
+    width: 88%;
+}
+
 .check-page4{
 	display: block;
 	justify-content: center; 
@@ -202,6 +238,29 @@ body{
     grid-template-columns: 1fr 3fr 1fr;
 }
 
+.sign-containet{
+    display: inline;
+    align-element: center;
+}
+
+.signform-container{
+    display: inline;
+    align-element: center;
+}
+.form-container{
+    border:1px solid #D3D3D3;
+    border-radius: 10px;
+    margin: 0 0 20px 0;
+    padding: 20px 5px 30px 5px;
+}
+
+.form-container1{
+    border:1px solid #D3D3D3;
+    border-radius: 10px;
+    margin: 0 0 20px 0;
+    padding: 10px;
+}
+
 .data-container{
     padding: 3em 2em 0 2em;
 }
@@ -240,4 +299,47 @@ body{
 }
 .child-folder-element{
     padding-left: 20px
+}
+
+.ayuda-container{
+  height: 100%;
+  width: 80%;
+  display: inline-block;
+}
+
+.bigayuda-container{
+   display: grid;
+   margin: 0 1% 0 5%;
+   grid-template-columns: 4fr 4fr 3fr;
+
+}
+
+.sign-container{
+ width: 30%;
+ margin: 0 auto;
+}
+
+.link{
+ color: #EF902A !important;
+ display: inline-block;
+ margin: 0 1% 0 0;
+}
+
+.texto{
+ display: inline-block;
+ margin: 1% 1% 0 0;
+ color: #2E2E2E;
+}
+
+.h2ayuda{
+ display: inline-block;
+ margin: 1% 0 1% 5%;
+ font-size: 200%;
+ color: #2E2E2E;
+}
+
+.boton::after {
+  color: red;
+  content: '.';
+  font-size: 48px;
 }
