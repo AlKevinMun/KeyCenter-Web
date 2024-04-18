@@ -27,14 +27,14 @@ function SignIn() {
             ),
             React.createElement('form', {className: 'form-container1'},
                 React.createElement('div', {className: 'signform-container'},
-                React.createElement('p', {className: 'texto'},'No tienes cuenta?'),
-                React.createElement(Link, { to: "/SignUp", className: "menu-link link"  },
-                React.createElement('p', null, 'Registrate')
-                ),
-                React.createElement('br', null),
-                React.createElement('p', {className: 'texto'},'No recuerdas como entrar?'),
-                React.createElement(Link, { to: "/Ayuda", className: "menu-link link"  },
-                                  React.createElement('p', null, 'Obten ayuda .')
+                    React.createElement('p', {className: 'texto'},'No tienes cuenta?'),
+                    React.createElement(Link, { to: "/SignUp", className: "menu-link link"  },
+                    React.createElement('p', null, 'Registrate')
+                    ),
+                    React.createElement('br', null),
+                    React.createElement('p', {className: 'texto'},'No recuerdas como entrar?'),
+                    React.createElement(Link, { to: "/Ayuda", className: "menu-link link"  },
+                    React.createElement('p', null, 'Obten ayuda .')
                 ),
                 ),
             ),

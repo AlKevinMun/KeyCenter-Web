@@ -2,17 +2,17 @@ import React from "react";
 
 function AddButton(name) {
 
-let a;
+let clas
 
     if (name === "Canvia la contrasenya" || name === "Obté el nom d’usuari") {
-        a = 'button-group1';
+        clas = 'button-group1';
     } else {
-        a = 'button-group';
+        clas = 'button-group';
     }
 
   return (
-     React.createElement('div', { className: a},
-       React.createElement('p', { className: 'button-label' }, name)
+     React.createElement('div', { className: clas},
+       React.createElement('p', { type: 'button', className: 'button-label' }, name)
      )
   );
  }
