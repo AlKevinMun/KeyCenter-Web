@@ -2,8 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function NavMenu() {
+
+    const navContainerStyle = {
+        position: "-webkit-sticky",
+        position: "sticky",
+        top: 0,
+        zIndex: 1000
+     };
+
  return (
-    React.createElement('nav', { className: "nav-container" },
+    React.createElement('nav', { className: "nav-container", style: navContainerStyle },
       React.createElement('div', { className: "menu-container" },
         React.createElement('ul', { className: "menu-table" },
           React.createElement('li', { className: "menu-element" },

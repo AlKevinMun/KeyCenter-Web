@@ -1,9 +1,9 @@
 import React from "react";
 
-function Logo(ruta) {
+function Logo(ruta, className) {
  return (
     React.createElement('div', { className: 'logo-container' },
-      React.createElement('img', { className: 'img-container', src: ruta }, null),
+      React.createElement('img', { className: className, src: ruta }, null),
     )
  );
 }

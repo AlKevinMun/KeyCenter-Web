@@ -8,6 +8,8 @@
  */
 body{
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .container-label{
@@ -202,10 +204,21 @@ body{
 .button:hover {
     background-color: #F7E8E5; 
 }
+
 .menu-container{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background: #970A2C;
     padding: 5px;
     padding-left: 20px;
+}
+
+.menu-container::after{
+    content: "";
+    clear: both;
+    display: table;
 }
 .menu-element{
     display: inline;
@@ -218,6 +231,11 @@ body{
 }
 .menu-link::hover{
     color:white;
+}
+.menu-login{
+    position: absolute;
+    right: 2em;
+    bottom: 10px;
 }
 .route-container{
     margin: 0;
@@ -278,7 +296,7 @@ body{
     border-radius: 3px;
 }
 .folder-element{
-    border:1px solid grey;
+    border:1px solid #E6E4E4;
 }
 
 .folder-icon{
@@ -342,4 +360,30 @@ body{
   color: red;
   content: '.';
   font-size: 48px;
+}
+.slogan{
+    font-size: 16px;
+    color: #707070;
+    font-weight: bold;
+}
+.logoImg{
+    display: block;
+    margin: auto;
+}
+.keys-table{
+    list-style-type: none;
+}
+.key-element{
+    display: inline-flex;
+    border: 1px solid #E6E4E4;
+    color: black;
+    text-decoration: none;
+    align-items: center;
+    width: 100%;
+}
+.keys-title{
+    padding: 5%;
+    text-decoration: none;
+    background: #E6E4E4;
+    color: #404040;
 }

@@ -4,11 +4,12 @@ import NavMenu from "../components/NavMenu.jsx"
 import NavRoute from "../components/NavRoute.jsx"
 import FolderTree from "../components/FolderTree.jsx"
 import TitleForm from "../components/TitleForm.jsx"
+import ServiceKey from "../components/ServiceKeys.jsx"
 
 function MainPage() {
  return (
     React.createElement('div', { className: 'main-container' },
-      Logo('resources/logotipoWeb.png'),
+      Logo('resources/logotipoWeb.png', 'img-container'),
       NavMenu(),
       NavRoute(),
       React.createElement('div', {className: 'content-containet'},
@@ -17,9 +18,12 @@ function MainPage() {
         ),
         React.createElement('div', {className: 'data-container'},
           TitleForm('KeyCenter'),
+          React.createElement('div', {className: 'info-container'},
+            React.createElement('p', {className: 'slogan'}, 'Inserta el lema aquí')),
+          Logo('resources/logo.png','logoImg'),
         ),
         React.createElement('div', {className: 'service-keys-container'},
-          React.createElement('p',null,'Prueba para ver como se ve este apartado to guapo'),
+          ServiceKey(),
         )
       )
     )
