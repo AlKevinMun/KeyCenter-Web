@@ -5,6 +5,9 @@ import NavRoute from "../components/NavRoute.jsx"
 import FolderTree from "../components/FolderTree.jsx"
 import TitleForm from "../components/TitleForm.jsx"
 import ServiceKey from "../components/ServiceKeys.jsx"
+import SearchBar from "../components/SearchBar.jsx"
+import InputSelector from "../components/InputSelector.jsx"
+import TableList from "../components/TableList.jsx"
 
 function MainPage() {
  return (
@@ -17,7 +20,12 @@ function MainPage() {
            FolderTree(),
          ),
          React.createElement('div', {className: 'data-container'},
-           React.createElement('p',null,'Prueba para ver como se ve este apartado to guapo'),
+            TitleForm('Incidencias'),
+            React.createElement('div', {className: 'Search-hooks'},
+            SearchBar(),
+            InputSelector(null,null,null,null,null, 'Estados') // Insertar la llamada de la api para obtener los estados.
+            ),
+           TableList(),
          ),
          React.createElement('div', {className: 'service-keys-container'},
            ServiceKey(),

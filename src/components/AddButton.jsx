@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddButton(name) {
+function AddButton(name, onClick) {
 
 let clas
 
@@ -12,7 +12,7 @@ let clas
 
   return (
      React.createElement('div', { className: clas},
-       React.createElement('p', { type: 'button', className: 'button-label' }, name)
+       React.createElement('p', { type: 'button', className: 'button-label', onClick: onClick }, name)
      )
   );
  }

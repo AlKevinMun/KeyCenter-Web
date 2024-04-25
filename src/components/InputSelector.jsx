@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-function InputSelector(name, data, plural, onChange, onBlur) {
+function InputSelector(name, data, plural, onChange, onBlur, id) {
+    if(id === null){
   //Si se diera el caso de que la información dada por la api fuera NULL, se mostraria los datos por defecto.
   if (data === null) {
     return (
@@ -79,7 +80,19 @@ function InputSelector(name, data, plural, onChange, onBlur) {
       )
     );
   }
-
+}
+else{
+    return (
+      React.createElement('div', { className: 'input-group2', id: id },
+        React.createElement('label', { className: 'input-label' }, name,),
+        React.createElement('select', { className: 'input' },
+          React.createElement('option', { value: 'option1' }, 'option1'),
+          React.createElement('option', { value: 'option2' }, 'option2'),
+          React.createElement('option', { value: 'option3' }, 'option3')
+        )
+      )
+    );
+    }
 }
 export default InputSelector;
 
