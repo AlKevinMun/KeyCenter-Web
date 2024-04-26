@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
 import  InputText from "./InputText.jsx"
-import { putIncidence } from "../service/Axios.jsx";
+import { postIncidence } from "../service/Axios.jsx";
 
 const CreateIncidence = ({ isOpen, onClose }) => {
      // Correctly use useRef to create a ref object
  const IncidenceRef = useRef({
     "topic": '',
     "description": '',
-    "user_id": 1
+    "user_id": 2
  });
 
 const handleOnChange = (name, event) => {
@@ -30,7 +30,7 @@ const handleOnChange = (name, event) => {
     console.log('Asunto:', IncidenceRef.current.topic);
     console.log('Descripción:', IncidenceRef.current.description);
     console.log(IncidenceRef.current);
-    putIncidence(IncidenceRef.current)
+    postIncidence(JSON.stringify(IncidenceRef.current))
           .then(response => {
             console.log('Incidencia creada con ID:', response.data.id);
             onClose();

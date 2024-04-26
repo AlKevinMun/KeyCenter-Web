@@ -20,7 +20,6 @@ function SignIn() {
     function fetchUsers() {
         axios.get(baseURL, {
             headers: {
-                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
             }
         }).then(res => {

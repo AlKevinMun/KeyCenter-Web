@@ -1,15 +1,19 @@
-import React from "react";
-import TableElement from "./TableElement.jsx"
+import React, { useState, useEffect } from "react";
+import TableElement from "./TableElement.jsx";
 
-function TableList() {
-  return (
-    React.createElement('div', { className: 'TableList-container' },
-      React.createElement('ul', { className: 'containet-TableElements'},
-        TableElement('Falta RAM PC 19 aula Turing', 'Descripción bien amplia del problema', '20/05/22', 'Finalizado'),
-        TableElement('Falta RAM PC 10 aula Turing', 'Descripción bien amplia del problema', '10/05/22', 'En curso'),
-      )
+function TableList({ incidences, refreshIncidences }) {
+ useEffect(() => {
+    if (refreshIncidences) {
+      refreshIncidences();
+    }
+ }, [refreshIncidences]);
+
+ return React.createElement('div', { className: 'TableList-container' },
+    React.createElement('ul', { className: 'containet-TableElements'},
+      incidences.map((incidence, index) =>
+        React.createElement(TableElement, {key: index, name: incidence.topic, description: incidence.description, date: incidence.send_date, status: incidence.state}))
     )
-  );
+ );
 }
 
 export default TableList;
