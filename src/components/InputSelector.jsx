@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 function InputSelector(name, data, plural, onChange, onBlur, id) {
+ const [options, setOptions] = useState([]);
+
+ useEffect(() => {
+    if (id === 'Estados') {
+      const newOptions = data.map((option, index) => React.createElement('option', { key: index, value: option.value }, option.label));
+      setOptions(newOptions);
+    }
+    // Aquí puedes agregar más lógica para otros casos si es necesario
+ }, [id, data]); // Aseguramos que el efecto se ejecute cuando cambie id o data
+
+ let optionsToRender = [];
+  if (id === 'Estados') {
+     optionsToRender = options;
+
     if(id === null){
   //Si se diera el caso de que la información dada por la api fuera NULL, se mostraria los datos por defecto.
   if (data === null) {
@@ -17,7 +31,7 @@ function InputSelector(name, data, plural, onChange, onBlur, id) {
   }
   else {
     let options = [];
-    if (plural === null) {
+     if (plural === null) {
       if (name === 'Pais de residencia') {
         options = data.paises.map((item, index) => {
           return React.createElement('option', { key: item.id, value: item.id }, item.name);
@@ -81,7 +95,18 @@ function InputSelector(name, data, plural, onChange, onBlur, id) {
     );
   }
 }
+
 else{
+    if (id === 'Estados') {
+        return (
+            React.createElement('div', { className: 'input-group2', id: id },
+                React.createElement('label', { className: 'input-label' }),
+                React.createElement('select', { className: 'input', name: name.toLowerCase(), onChange: onChange, onBlur: onBlur },
+                    optionsToRender
+                )
+            )
+        );
+    }
     return (
       React.createElement('div', { className: 'input-group2', id: id },
         React.createElement('label', { className: 'input-label' }, name,),
@@ -93,6 +118,7 @@ else{
       )
     );
     }
+}
 }
 export default InputSelector;
 

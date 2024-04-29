@@ -25,6 +25,7 @@ const handleOnChange = (name, event) => {
 }
 
 
+
  const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Asunto:', IncidenceRef.current.topic);
@@ -41,12 +42,17 @@ const handleOnChange = (name, event) => {
     onClose();
  };
 
- if (!isOpen) {
-    return null;
- }
+  const handleClose = () => {
+         onClose();
+     };
+
+     if (!isOpen) {
+         return null;
+     }
 
  return React.createElement('div', { className: 'dialog-overlay' },
     React.createElement('div', { className: 'dialog-content' },
+      React.createElement('button', { className: 'close-button', onClick: handleClose }, 'X'),
       React.createElement('h2', null, 'Crear Nuevo Asunto'),
       React.createElement('form', { onSubmit: handleSubmit },
         React.createElement('label', { className: 'dialog-title' }, 'Asunto',),

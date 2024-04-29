@@ -15,6 +15,13 @@ import { getIncidence } from "../service/Axios.jsx";
 function MainPage() {
  const [isDialogOpen, setIsDialogOpen] = useState(false);
  const [incidences, setIncidences] = useState([]);
+ const [filterState, setFilterState] = useState(null);
+ const [stateOptions, setStateOptions] = useState([
+      { value: 'all', label: 'Todas' },
+      { value: '0', label: 'Abierto' },
+      { value: '1', label: 'En Proceso' },
+      { value: '2', label: 'Cerrado' }
+ ]);
 
  const handleOpenDialog = () => {setIsDialogOpen(true);};
  const handleCloseDialog = () => {setIsDialogOpen(false);};
@@ -27,6 +34,15 @@ function MainPage() {
       console.error("Error al actualizar las incidencias:", error);
     }
  };
+
+const handleStateChange = (event) => {
+    setFilterState(event.target.value);
+};
+
+const filteredIncidences = incidences.filter(incidence => {
+ if (filterState === 'all') return true;
+ return filterState === null || incidence.state === parseInt(filterState);
+});
 
  return (
     React.createElement('div', { className: 'main-container' },
@@ -41,7 +57,7 @@ function MainPage() {
           TitleForm('Incidencias'),
           React.createElement('div', { className: 'Search-hooks' },
             SearchBar(),
-            InputSelector(null, null, null, null, null, 'Estados'),
+            InputSelector('Estados', stateOptions, null, null, handleStateChange, 'Estados'),
           ),
           React.createElement(TableList, { incidences, refreshIncidences }),
           AddButton("Añadir nueva incidencia", handleOpenDialog),
