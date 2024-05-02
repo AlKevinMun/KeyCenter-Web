@@ -1,10 +1,10 @@
 /* Aqui elimino el mio */
 .eleccion-container {
     border: 1px solid #B3B3B3;
-    background:#F6F6F6;
+    background: #F6F6F6;
 }
 
-.manual-container{
+.manual-container {
     position: relative;
     display: inline-block;
     text-align: center;
@@ -12,11 +12,11 @@
 }
 
 @font-face {
-  font-family: 'seat';
-  src: url('resources/font/seat_bcn_black.ttf') format('truetype');
+    font-family: 'seat';
+    src: url('resources/font/seat_bcn_black.ttf') format('truetype');
 }
 
-.text-manual{
+.text-manual {
     position: absolute;
     top: 50%;
     left: 50%;
