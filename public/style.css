@@ -497,6 +497,8 @@ body{
   margin-top: 10px;
   margin-bottom: 10px;
   border: solid 1px #ccc;
+  max-width: calc(100% - 20px);
+  max-height: calc(100% - 20px);
 }
 
 .dialog-button {
