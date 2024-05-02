@@ -13,38 +13,38 @@ import CreateIncidence from "../components/CreateIncidence.jsx";
 import { getIncidence } from "../service/Axios.jsx";
 
 function MainPage() {
- const [isDialogOpen, setIsDialogOpen] = useState(false);
- const [incidences, setIncidences] = useState([]);
- const [filterState, setFilterState] = useState(null);
- const [stateOptions, setStateOptions] = useState([
-      { value: 'all', label: 'Todas' },
-      { value: '0', label: 'Abierto' },
-      { value: '1', label: 'En Proceso' },
-      { value: '2', label: 'Cerrado' }
- ]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [incidences, setIncidences] = useState([]);
+  const [filterState, setFilterState] = useState(null);
+  const [stateOptions, setStateOptions] = useState([
+    { value: 'all', label: 'Todas' },
+    { value: '0', label: 'Abierto' },
+    { value: '1', label: 'En Proceso' },
+    { value: '2', label: 'Cerrado' }
+  ]);
 
- const handleOpenDialog = () => {setIsDialogOpen(true);};
- const handleCloseDialog = () => {setIsDialogOpen(false);};
+  const handleOpenDialog = () => { setIsDialogOpen(true); };
+  const handleCloseDialog = () => { setIsDialogOpen(false); };
 
- const refreshIncidences = async () => {
+  const refreshIncidences = async () => {
     try {
       const response = await getIncidence();
       setIncidences(response.data);
     } catch (error) {
       console.error("Error al actualizar las incidencias:", error);
     }
- };
+  };
 
-const handleStateChange = (event) => {
+  const handleStateChange = (event) => {
     setFilterState(event.target.value);
-};
+  };
 
-const filteredIncidences = incidences.filter(incidence => {
- if (filterState === 'all') return true;
- return filterState === null || incidence.state === parseInt(filterState);
-});
+  const filteredIncidences = incidences.filter(incidence => {
+    if (filterState === 'all') return true;
+    return filterState === null || incidence.state === parseInt(filterState);
+  });
 
- return (
+  return (
     React.createElement('div', { className: 'main-container' },
       Logo('resources/logotipoWeb.png'),
       NavMenu(),
@@ -68,7 +68,7 @@ const filteredIncidences = incidences.filter(incidence => {
       ),
       React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog })
     )
- );
+  );
 }
 
 export default MainPage;

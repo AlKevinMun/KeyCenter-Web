@@ -1,6 +1,6 @@
 import React from "react";
 
-function TitleForm(name){
+function TitleForm(name) {
 
     let a;
 
@@ -11,12 +11,12 @@ function TitleForm(name){
     }
 
 
-    return(
-    React.createElement('div',{className: 'title-container'},
-    React.createElement('p', {className: a}, name),
-    React.createElement('hr', {className: 'container-label-line'}),
-    )
+    return (
+        React.createElement('div', { className: 'title-container' },
+            React.createElement('p', { className: a }, name),
+            React.createElement('hr', { className: 'container-label-line' }),
+        )
     );
 }
-  
-  export default TitleForm;
+
+export default TitleForm;

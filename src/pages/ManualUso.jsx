@@ -5,7 +5,7 @@ import NavRoute from "../components/NavRoute.jsx"
 import FolderTree from "../components/FolderTree.jsx"
 
 function MainPage() {
- return React.createElement('p', null, 'Work in progress')
+    return React.createElement('p', null, 'Work in progress')
 }
 
 export default MainPage;

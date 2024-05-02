@@ -1,1 +1,28 @@
-/* CSS para las modificaciones del chino */
+/* Aqui elimino el mio */
+.eleccion-container {
+    border: 1px solid #B3B3B3;
+    background:#F6F6F6;
+}
+
+.manual-container{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin: 2% 2% 2% 2%;
+}
+
+@font-face {
+  font-family: 'seat';
+  src: url('resources/font/seat_bcn_black.ttf') format('truetype');
+}
+
+.text-manual{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -130%);
+    font-family: 'seat';
+    -webkit-text-stroke: 2px black;
+    color: transparent;
+    font-size: 300%
+}

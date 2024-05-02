@@ -1,9 +1,9 @@
 import React from "react";
 
 function TableElement({ name, description, date, status }) {
-    if(status===0){status = 'Enviado'}
-    else if(status===1){status = 'En curso'}
-    else if(status===-1){status = 'Finalizado'}
+    if (status === 0) { status = 'Enviado' }
+    else if (status === 1) { status = 'En curso' }
+    else if (status === -1) { status = 'Finalizado' }
 
     const formattedDate = new Date(date).toLocaleString('es-ES', {
         year: 'numeric',
@@ -19,7 +19,7 @@ function TableElement({ name, description, date, status }) {
 
     // Función para determinar el color del texto basado en el status
     const getStatusColor = () => {
-        switch(status) {
+        switch (status) {
             case 'Enviado':
                 return 'green';
             case 'En curso':
@@ -34,20 +34,20 @@ function TableElement({ name, description, date, status }) {
     // Aplicar el estilo condicionalmente
     const statusStyle = { color: getStatusColor() };
 
- return (
-    React.createElement('li', { className: 'TableElement-li'},
-      React.createElement('div', { className: 'TableElement-container' },
-        React.createElement('div', null,
-            React.createElement('p', { className: 'TableElement-name'}, limitedTopic),
-            React.createElement('p', { className: 'TableElement-description'}, limitedDescription),
-        ),
-        React.createElement('div', null,
-            React.createElement('p', { className: 'TableElement-date'}, formattedDate),
-            React.createElement('p', { className: 'TableElement-status', style: statusStyle }, status),
-        ),
-      )
-    )
- );
+    return (
+        React.createElement('li', { className: 'TableElement-li' },
+            React.createElement('div', { className: 'TableElement-container' },
+                React.createElement('div', null,
+                    React.createElement('p', { className: 'TableElement-name' }, limitedTopic),
+                    React.createElement('p', { className: 'TableElement-description' }, limitedDescription),
+                ),
+                React.createElement('div', null,
+                    React.createElement('p', { className: 'TableElement-date' }, formattedDate),
+                    React.createElement('p', { className: 'TableElement-status', style: statusStyle }, status),
+                ),
+            )
+        )
+    );
 }
 
 export default TableElement;
