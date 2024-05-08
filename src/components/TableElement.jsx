@@ -1,6 +1,6 @@
 import React from "react";
 
-function TableElement({ name, description, date, status }) {
+function TableElement({ name, description, date, status, onClick }) {
     if (status === 0) { status = 'Enviado' }
     else if (status === 1) { status = 'En curso' }
     else if (status === -1) { status = 'Finalizado' }
@@ -35,7 +35,7 @@ function TableElement({ name, description, date, status }) {
     const statusStyle = { color: getStatusColor() };
 
     return (
-        React.createElement('li', { className: 'TableElement-li' },
+        React.createElement('li', { className: 'TableElement-li', onClick: onClick }, // Añade onClick aquí
             React.createElement('div', { className: 'TableElement-container' },
                 React.createElement('div', null,
                     React.createElement('p', { className: 'TableElement-name' }, limitedTopic),

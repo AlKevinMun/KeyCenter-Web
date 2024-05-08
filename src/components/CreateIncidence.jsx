@@ -7,7 +7,7 @@ const CreateIncidence = ({ isOpen, onClose }) => {
   const IncidenceRef = useRef({
     "topic": '',
     "description": '',
-    "user_id": 2
+    "user_id": 1
   });
 
   const handleOnChange = (name, event) => {

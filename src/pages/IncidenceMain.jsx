@@ -16,6 +16,7 @@ function MainPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [incidences, setIncidences] = useState([]);
   const [filterState, setFilterState] = useState(null);
+  const [selectedIncidence, setSelectedIncidence] = useState(null);
   const [stateOptions, setStateOptions] = useState([
     { value: 'all', label: 'Todas' },
     { value: '0', label: 'Abierto' },
@@ -38,6 +39,9 @@ function MainPage() {
   const handleStateChange = (event) => {
     setFilterState(event.target.value);
   };
+const handleElementClick = (incidence) => {
+    setSelectedIncidence(incidence);
+};
 
   const filteredIncidences = incidences.filter(incidence => {
     if (filterState === 'all') return true;
@@ -66,7 +70,7 @@ function MainPage() {
           ServiceKey(),
         )
       ),
-      React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog })
+      React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog, incidence: selectedIncidence  })
     )
   );
 }
