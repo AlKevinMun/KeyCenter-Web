@@ -20,7 +20,9 @@ function FolderTree() {
     if (route.path === '/Manuales' && route.children) {
       const matchingChildRoute = route.children.find(child => currentRoute.startsWith(route.path));
       if (matchingChildRoute) {
-        childElement = React.createElement(FolderElement, { key: matchingChildRoute.path, path: matchingChildRoute.path, name: matchingChildRoute.name, icon: matchingChildRoute.icon, className: "folder-element  child-folder-element" });
+        for (){
+          childElement = React.createElement(FolderElement, { key: matchingChildRoute.path, path: matchingChildRoute.path, name: matchingChildRoute.name, icon: matchingChildRoute.icon, className: "folder-element  child-folder-element" });
+        }
       }
     }
     return [parentElement, childElement];

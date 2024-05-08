@@ -17,7 +17,7 @@ function MainPage() {
           FolderTree(),
         ),
         React.createElement('div', { className: 'data-container' },
-          TitleForm('Manual de uso'),
+          TitleForm('Manual de administracion'),
           React.createElement('div', { className: 'info-container' },
             React.createElement('p', { className: 'slogan' }, 'Inserta el manual aquí')),
         ),

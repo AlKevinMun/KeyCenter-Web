@@ -2,6 +2,10 @@
 .eleccion-container {
     border: 1px solid #B3B3B3;
     background: #F6F6F6;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    margin: 0 2% 2% 2%;
 }
 
 .manual-container {
@@ -24,5 +28,10 @@
     font-family: 'seat';
     -webkit-text-stroke: 2px black;
     color: transparent;
-    font-size: 300%
+    font-size: 300%;
+}
+
+.manual-text {
+    font-size: 200%;
+    color: black;
 }

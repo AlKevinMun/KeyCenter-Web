@@ -19,6 +19,16 @@
         "path": "/Manuales/ManualUso",
         "name": "Manual de Uso",
         "icon": "resources/folderIcon.png"
+      },
+      {
+        "path": "/Manuales/ManualUsuario",
+        "name": "Manual de Usuario",
+        "icon": "resources/folderIcon.png"
+      },
+      {
+        "path": "/Manuales/ManualAdministracion",
+        "name": "Manual de Administracion",
+        "icon": "resources/folderIcon.png"
       }
     ]
   }
