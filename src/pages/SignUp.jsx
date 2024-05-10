@@ -22,7 +22,7 @@ function SignUp() {
                   React.createElement('div', { className: 'signform-container' },
                      InputText('Correo electronico'),
                      InputText('Contraseña'),
-                     AddButton('Crear')
+                     AddButton('Crear', 'button-group', null)
                   ),
                ),
                React.createElement('form', { className: 'form-container1' },

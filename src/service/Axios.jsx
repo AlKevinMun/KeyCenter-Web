@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
     //baseURL: 'http://192.168.242.12:8080/api',
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'http://192.168.250.84:8080/api',
     timeout: 5000,
     headers: {
         'Access-Control-Allow-Origin': '*',
@@ -24,10 +24,13 @@ export const getIncidenceById = (id) => {
     return axiosInstance.get(`/incidences/${id}`);;
 };
 
-
 // Función para actualizar una incidencia
 export const postIncidence = (data) => {
     return axiosInstance.post('/incidences', data);
+};
+// Función para borrar una incidencia
+export const deleteIncidence = (id) => {
+    return axiosInstance.delete(`/incidences/${id}`);;
 };
 
 

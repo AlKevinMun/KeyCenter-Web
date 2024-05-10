@@ -8,10 +8,24 @@ function FolderTree() {
   const [routes, setRoutes] = useState([]);
 
   useEffect(() => {
-    fetch('resources/routes.json')
+    // Verifica si la ruta actual cumple con alguna condición específica
+    // Por ejemplo, si la ruta contiene "/Incidencias/DetallesIncidencia"
+    if (!location.pathname.includes('/Incidencias/DetallesIncidencia')) {
+      fetch('resources/routes.json')
       .then(response => response.json())
       .then(data => setRoutes(data));
-  }, []);
+    } else{
+        fetch('../../resources/routes.json')
+         .then(response => response.json())
+         .then(data => {
+           const newData = data.map(item => ({
+            ...item,
+             icon: '../../resources/folderIcon.png',
+           }));
+            setRoutes(newData);
+          });
+      }
+  }, [location]);
 
   const renderFolderElement = (route) => {
     const parentElement = React.createElement(FolderElement, { key: route.path, path: route.path, name: route.name, icon: route.icon });

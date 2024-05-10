@@ -64,7 +64,7 @@ const handleElementClick = (incidence) => {
             InputSelector('Estados', stateOptions, null, null, handleStateChange, 'Estados'),
           ),
           React.createElement(TableList, { incidences, refreshIncidences }),
-          AddButton("Añadir nueva incidencia", handleOpenDialog),
+          AddButton("Añadir nueva incidencia", 'button-group',handleOpenDialog),
         ),
         React.createElement('div', { className: 'service-keys-container' },
           ServiceKey(),

@@ -1,18 +1,10 @@
 import React from "react";
 
-function AddButton(name, onClick) {
-
-  let clas
-
-  if (name === "Canvia la contrasenya" || name === "Obté el nom d’usuari") {
-    clas = 'button-group1';
-  } else {
-    clas = 'button-group';
-  }
+function AddButton(name, nameClass ,onClick) {
 
   return (
-    React.createElement('div', { className: clas },
-      React.createElement('p', { type: 'button', className: 'button-label', onClick: onClick }, name)
+    React.createElement('div', { className: nameClass, onClick: onClick },
+      React.createElement('p', { type: 'button', className: 'button-label' }, name)
     )
   );
 }
