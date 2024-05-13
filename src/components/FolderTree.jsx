@@ -8,30 +8,41 @@ function FolderTree() {
   const [routes, setRoutes] = useState([]);
 
   useEffect(() => {
-    // Verifica si la ruta actual cumple con alguna condición específica
-    // Por ejemplo, si la ruta contiene "/Incidencias/DetallesIncidencia"
-    if (!location.pathname.includes('/Incidencias/DetallesIncidencia')) {
-      fetch('resources/routes.json')
-      .then(response => response.json())
-      .then(data => setRoutes(data));
-    } else{
-        fetch('../../resources/routes.json')
-         .then(response => response.json())
-         .then(data => {
-           const newData = data.map(item => ({
-            ...item,
-             icon: '../../resources/folderIcon.png',
-           }));
-            setRoutes(newData);
-          });
+      let fetchRoutes = true;
+      let fetchModifiedRoutes = false;
+
+      if (location.pathname.includes('/Incidencias/DetallesIncidencia')) {
+          fetchRoutes = false;
+      } else if (location.pathname.includes('/Manuales/ManualUso')) {
+          fetchRoutes = false;
+          fetchModifiedRoutes = true;
+      }
+
+      if (fetchRoutes) {
+          fetch('resources/routes.json')
+              .then(response => response.json())
+              .then(data => setRoutes(data))
+              .catch(error => console.error('Error fetching routes:', error));
+      } else if (fetchModifiedRoutes) {
+          fetch('../../resources/routes.json')
+              .then(response => response.json())
+              .then(data => {
+                  const newData = data.map((item: any) => ({
+                      ...item,
+                      icon: '../../resources/folderIcon.png',
+                  }));
+                  setRoutes(newData);
+              })
+              .catch(error => console.error('Error fetching modified routes:', error));
       }
   }, [location]);
+
 
  const renderFolderElement = (route) => {
      const parentElement = React.createElement(FolderElement, { key: route.path, path: route.path, name: route.name, icon: route.icon });
 
      let childElements = null;
-     if (route.children && route.children.length > 0) {
+     if (currentRoute.startsWith('/Manuales') && route.path === '/Manuales' && route.children && route.children.length > 0) {
        childElements = route.children.map(child => {
          return React.createElement(FolderElement, { key: child.path, path: child.path, name: child.name, icon: child.icon, className: "folder-element child-folder-element" });
        });

@@ -9,7 +9,7 @@ import ServiceKey from "../components/ServiceKeys.jsx"
 function MainPage() {
   return (
     React.createElement('div', { className: 'main-container' },
-      Logo('resources/logotipoWeb.png', 'img-container'),
+      Logo('../../resources/logotipoWeb.png', 'img-container'),
       NavMenu(),
       NavRoute(),
       React.createElement('div', { className: 'content-containet' },
