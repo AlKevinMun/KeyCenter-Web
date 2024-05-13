@@ -27,18 +27,17 @@ function FolderTree() {
       }
   }, [location]);
 
-  const renderFolderElement = (route) => {
-    const parentElement = React.createElement(FolderElement, { key: route.path, path: route.path, name: route.name, icon: route.icon });
+ const renderFolderElement = (route) => {
+     const parentElement = React.createElement(FolderElement, { key: route.path, path: route.path, name: route.name, icon: route.icon });
 
-    let childElement = null;
-    if (route.path === '/Manuales' && route.children) {
-      const matchingChildRoute = route.children.find(child => currentRoute.startsWith(route.path));
-      if (matchingChildRoute) {
-          childElement = React.createElement(FolderElement, { key: matchingChildRoute.path, path: matchingChildRoute.path, name: matchingChildRoute.name, icon: matchingChildRoute.icon, className: "folder-element  child-folder-element" });
-      }
-    }
-    return [parentElement, childElement];
-  };
+     let childElements = null;
+     if (route.children && route.children.length > 0) {
+       childElements = route.children.map(child => {
+         return React.createElement(FolderElement, { key: child.path, path: child.path, name: child.name, icon: child.icon, className: "folder-element child-folder-element" });
+       });
+     }
+     return [parentElement, ...(childElements || [])];
+   };
 
   return React.createElement('nav', { className: "nav-container" },
     React.createElement('div', { className: "folder-container" },
