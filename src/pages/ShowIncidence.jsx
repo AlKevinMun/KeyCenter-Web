@@ -15,7 +15,7 @@ function ShowIncidence() {
   const [users, setUsers] = useState([]); // Almacenar todos los usuarios
   const [nameUser, setNameUser] = useState(null); // Almacenar el nombre del usuario correspondiente
   const [showConfirmation, setShowConfirmation] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
+  const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
 
   useEffect(() => {
     const obtenerIncidencia = async () => {
@@ -88,9 +88,11 @@ if (isLoading) {
   const handleDelete = async () => {
     if (window.confirm("¿Estás seguro de que quieres borrar esta incidencia?")) {
       try {
-        console.log(await deleteIncidence(incidenceId));
         await deleteIncidence(incidenceId);
-        window.history.go(-1);
+        const estimatedWaitTime = 1000;
+        setTimeout(() => {
+          window.history.go(-1);
+        }, estimatedWaitTime);
       } catch (error) {
         console.error("Error al borrar la incidencia:", error);
       }

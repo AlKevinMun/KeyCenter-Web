@@ -29,7 +29,7 @@ export const postIncidence = (data) => {
 };
 // Función para borrar una incidencia
 export const deleteIncidence = (id) => {
-    return axiosInstance.delete(`/incidences/${id}`);;
+    return axiosInstance.delete(`/incidences/${id}`);
 };
 
 // Función para obtener una llave

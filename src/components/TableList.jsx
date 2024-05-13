@@ -18,9 +18,14 @@ function TableList({ incidences, refreshIncidences }) {
   };
 
   useEffect(() => {
-    if (refreshIncidences) {
-      refreshIncidences();
-    }
+    const intervalId = setInterval(() => {
+      if (refreshIncidences) {
+        refreshIncidences();
+      }
+    }, 15000); // Llama a refreshIncidences cada 30 segundos
+
+    // Limpiar el intervalo cuando el componente se desmonte
+    return () => clearInterval(intervalId);
   }, [refreshIncidences]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../components/Logo.jsx";
 import NavMenu from "../components/NavMenu.jsx";
 import NavRoute from "../components/NavRoute.jsx";
@@ -27,6 +27,10 @@ function MainPage() {
   const handleOpenDialog = () => { setIsDialogOpen(true); };
   const handleCloseDialog = () => { setIsDialogOpen(false); };
 
+  useEffect(() => {
+    refreshIncidences();
+  }, []); // El array vacío asegura que este efecto se ejecute solo una vez
+
   const refreshIncidences = async () => {
     try {
       const response = await getIncidence();
@@ -39,9 +43,10 @@ function MainPage() {
   const handleStateChange = (event) => {
     setFilterState(event.target.value);
   };
-const handleElementClick = (incidence) => {
+
+  const handleElementClick = (incidence) => {
     setSelectedIncidence(incidence);
-};
+  };
 
   const filteredIncidences = incidences.filter(incidence => {
     if (filterState === 'all') return true;
