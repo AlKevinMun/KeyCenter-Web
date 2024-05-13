@@ -23,7 +23,6 @@ export const getIncidence = () => {
 export const getIncidenceById = (id) => {
     return axiosInstance.get(`/incidences/${id}`);;
 };
-
 // Función para actualizar una incidencia
 export const postIncidence = (data) => {
     return axiosInstance.post('/incidences', data);
@@ -31,6 +30,23 @@ export const postIncidence = (data) => {
 // Función para borrar una incidencia
 export const deleteIncidence = (id) => {
     return axiosInstance.delete(`/incidences/${id}`);;
+};
+
+// Función para obtener una llave
+export const getKey = () => {
+    return axiosInstance.get(`/llaves`);
+};
+// Función para obtener una llave via id
+export const getKeyById = (id) => {
+    return axiosInstance.get(`/llaves/${id}`);;
+};
+// Función para actualizar una llave
+export const postKey = (data) => {
+    return axiosInstance.post('/llaves', data);
+};
+// Función para borrar una llave
+export const deleteKey = (id) => {
+    return axiosInstance.delete(`/llaves/${id}`);;
 };
 
 
