@@ -18,7 +18,7 @@ import ShowIncidence from "./pages/ShowIncidence.jsx"
             React.createElement(Route, {path:"/", element: KeyCenterMain() }),
             React.createElement(Route, {path:"/Llaves", element: KeysMain() }),
             React.createElement(Route, {path:"/Incidencias", element: IncidenceMain()}),
-            React.createElement(Route, {path:"/Incidencias/DetallesIncidencia/:incidenceId", element: <ShowIncidence /> }),
+            React.createElement(Route, {path:"/Detalles/:incidenceId", element: <ShowIncidence /> }),
             React.createElement(Route, {path:"/Manuales", element: ManualMain() }),
             React.createElement(Route, {path:"/Manuales/ManualUso", element: ManualUso() }),
             React.createElement(Route, {path:"/Manuales/ManualUsuario", element: ManualUsuario() }),

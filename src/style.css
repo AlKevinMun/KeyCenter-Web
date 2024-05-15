@@ -310,6 +310,7 @@ body {
 }
 
 .folder-table {
+    padding-left: 0px;
     border-radius: 5px;
     list-style-type: none;
     border-radius: 3px;
@@ -397,6 +398,7 @@ body {
 }
 
 .keys-table {
+    padding-left: 0px;
     list-style-type: none;
 }
 
@@ -433,7 +435,9 @@ body {
 .button-search {
     padding: 10px;
 }
-
+.container-TableElements{
+  padding-left: 0px;
+}
 #Estados {
     display: inline-block;
     padding: 0;

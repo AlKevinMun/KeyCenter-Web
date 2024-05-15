@@ -15,7 +15,7 @@ import { getIncidence } from "../service/Axios.jsx";
 function MainPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [incidences, setIncidences] = useState([]);
-  const [filterState, setFilterState] = useState(null);
+  const [filterState, setFilterState] = useState('all');
   const [selectedIncidence, setSelectedIncidence] = useState(null);
   const [stateOptions, setStateOptions] = useState([
     { value: 'all', label: 'Todas' },
@@ -34,6 +34,7 @@ function MainPage() {
   const refreshIncidences = async () => {
     try {
       const response = await getIncidence();
+      console.log(response.data);
       setIncidences(response.data);
     } catch (error) {
       console.error("Error al actualizar las incidencias:", error);
@@ -49,9 +50,11 @@ function MainPage() {
   };
 
   const filteredIncidences = incidences.filter(incidence => {
-    if (filterState === 'all') return true;
-    return filterState === null || incidence.state === parseInt(filterState);
+    if (filterState === 'all') return true; // Si el filtro está en 'all', muestra todas las incidencias
+    if (filterState === null) return false; // Si no hay filtro aplicado, no muestra ninguna incidencia
+    return incidence.state === parseInt(filterState); // Compara el estado de la incidencia con el filtro
   });
+
 
   return (
     React.createElement('div', { className: 'main-container' },
@@ -66,9 +69,9 @@ function MainPage() {
           TitleForm('Incidencias'),
           React.createElement('div', { className: 'Search-hooks' },
             SearchBar(),
-            InputSelector('Estados', stateOptions, null, null, handleStateChange, 'Estados'),
+            InputSelector('Estados', stateOptions, null, handleStateChange, null, 'Estados'),
           ),
-          React.createElement(TableList, { incidences, refreshIncidences }),
+          React.createElement(TableList, { items: filteredIncidences, refreshItems: refreshIncidences }),
           AddButton("Añadir nueva incidencia", 'button-group',handleOpenDialog),
         ),
         React.createElement('div', { className: 'service-keys-container' },

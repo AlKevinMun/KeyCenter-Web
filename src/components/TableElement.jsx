@@ -19,16 +19,19 @@ function TableElement({ name, description, date, status, onClick }) {
 
     // Función para determinar el color del texto basado en el status
     const getStatusColor = () => {
-        switch (status) {
-            case 'Enviado':
-                return 'green';
-            case 'En curso':
-                return 'orange';
-            case 'Finalizado':
-                return 'red';
-            default:
-                return 'black';
+        let color;
+
+        if (status === 'Enviado' || status === 'Disponible') {
+            color = 'green';
+        } else if (status === 'En curso') {
+            color = 'orange';
+        } else if (status === 'Finalizado' || status === 'En uso') {
+            color = 'red';
+        } else {
+            color = 'black';
         }
+
+        return color;
     };
 
     // Aplicar el estilo condicionalmente
