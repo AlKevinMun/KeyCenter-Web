@@ -632,7 +632,7 @@ body {
 
 @font-face {
     font-family: 'seat';
-    src: url('./font/seat_bcn_black.ttf') format('truetype');
+    src: url('resources/font/seat_bcn_black.ttf') format('truetype');
 }
 
 .text-manual {

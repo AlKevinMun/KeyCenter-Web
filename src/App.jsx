@@ -8,7 +8,6 @@ import ManualUso from "./pages/ManualUso.jsx"
 import ManualUsuario from "./pages/ManualUsuario.jsx"
 import ManualAdministracion from "./pages/ManualAdministracion.jsx"
 import SignIn from "./pages/SignIn.jsx"
-import SignUp from "./pages/SignUp.jsx"
 import Ayuda from "./pages/Ayuda.jsx"
 import IncidenceMain from "./pages/IncidenceMain.jsx"
 import ShowIncidence from "./pages/ShowIncidence.jsx"
@@ -23,7 +22,6 @@ import ShowIncidence from "./pages/ShowIncidence.jsx"
             React.createElement(Route, {path:"/Manuales/ManualUso", element: ManualUso() }),
             React.createElement(Route, {path:"/Manuales/ManualUsuario", element: ManualUsuario() }),
             React.createElement(Route, {path:"/Manuales/ManualAdministracion", element: ManualAdministracion() }),
-            React.createElement(Route, {path:"/SignUp", element: SignUp() }),
             React.createElement(Route, {path:"/SignIn", element: SignIn() }),
             React.createElement(Route, {path:"/Ayuda", element: Ayuda() }),
     );
