@@ -67,7 +67,7 @@ function MainPage() {
         React.createElement('div', { className: 'data-container' },
           TitleForm('Llaves'),
           React.createElement('div', { className: 'Search-hooks' },
-            SearchBar(),
+            SearchBar('Buscar Llaves'),
             InputSelector('Estados', stateOptions, null, handleStateChange, null, 'Estados'),
           ),
           React.createElement(TableList, { items: filteredKeys, refreshItems: refreshKeys }),

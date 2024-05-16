@@ -68,7 +68,7 @@ function MainPage() {
         React.createElement('div', { className: 'data-container' },
           TitleForm('Incidencias'),
           React.createElement('div', { className: 'Search-hooks' },
-            SearchBar(),
+            SearchBar('Buscar Incidencias'),
             InputSelector('Estados', stateOptions, null, handleStateChange, null, 'Estados'),
           ),
           React.createElement(TableList, { items: filteredIncidences, refreshItems: refreshIncidences }),
