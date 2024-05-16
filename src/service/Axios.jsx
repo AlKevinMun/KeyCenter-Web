@@ -14,7 +14,10 @@ const axiosInstance = axios.create({
 export const getUser = () => {
     return axiosInstance.get('/users');
 };
-
+// Función para llamar a la autenticación
+export const auth = () => {
+    return axios.get('/auth');
+};
 // Función para obtener una incidencia
 export const getIncidence = () => {
     return axiosInstance.get(`/incidences`);

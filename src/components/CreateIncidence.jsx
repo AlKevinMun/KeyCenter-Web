@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import InputText from "./InputText.jsx"
 import { postIncidence } from "../service/Axios.jsx";
 
-const CreateIncidence = ({ isOpen, onClose }) => {
+const CreateIncidence = ({ isOpen, onClose, onRefresh }) => {
   // Correctly use useRef to create a ref object
   const IncidenceRef = useRef({
     "topic": '',
@@ -35,6 +35,7 @@ const CreateIncidence = ({ isOpen, onClose }) => {
       .then(response => {
         console.log('Incidencia creada con ID:', response.data.id);
         onClose();
+        onRefresh();
       })
       .catch(error => {
         console.error('Error al crear la incidencia:', error);

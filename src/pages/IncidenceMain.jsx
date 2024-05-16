@@ -78,7 +78,7 @@ function MainPage() {
           ServiceKey(),
         )
       ),
-      React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog, incidence: selectedIncidence  })
+      React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog, incidence: selectedIncidence, onRefresh: refreshIncidences })
     )
   );
 }
