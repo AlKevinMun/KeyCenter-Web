@@ -1,1 +1,6 @@
 /* Aqui elimino el mio */
+.menu-users {
+    position: absolute;
+    right: 7em;
+    bottom: 10px;
+}

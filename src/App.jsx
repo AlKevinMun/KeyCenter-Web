@@ -11,6 +11,7 @@ import SignIn from "./pages/SignIn.jsx"
 import Ayuda from "./pages/Ayuda.jsx"
 import IncidenceMain from "./pages/IncidenceMain.jsx"
 import ShowIncidence from "./pages/ShowIncidence.jsx"
+import UsersMain from "./pages/UsersMain.jsx"
 
   function App() {
     return React.createElement(Routes, null,
@@ -24,6 +25,7 @@ import ShowIncidence from "./pages/ShowIncidence.jsx"
             React.createElement(Route, {path:"/Manuales/ManualAdministracion", element: ManualAdministracion() }),
             React.createElement(Route, {path:"/SignIn", element: SignIn() }),
             React.createElement(Route, {path:"/Ayuda", element: Ayuda() }),
+            React.createElement(Route, {path:"/Usuarios", element: UsersMain() }),
     );
   }
   
