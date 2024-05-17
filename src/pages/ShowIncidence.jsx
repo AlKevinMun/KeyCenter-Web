@@ -7,6 +7,7 @@ import FolderTree from "../components/FolderTree.jsx";
 import TitleForm from "../components/TitleForm.jsx";
 import ServiceKey from "../components/ServiceKeys.jsx";
 import AddButton from "../components/AddButton.jsx";
+import SuccessMessage from "../components/SuccessMessage.jsx";
 import { getIncidenceById, getUser, deleteIncidence } from "../service/Axios.jsx";
 
 function ShowIncidence() {
@@ -16,6 +17,7 @@ function ShowIncidence() {
   const [nameUser, setNameUser] = useState(null); // Almacenar el nombre del usuario correspondiente
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     const obtenerIncidencia = async () => {
@@ -89,7 +91,9 @@ if (isLoading) {
     if (window.confirm("¿Estás seguro de que quieres borrar esta incidencia?")) {
       try {
         await deleteIncidence(incidenceId);
-        const estimatedWaitTime = 1000;
+        setSuccessMessage('Incidencia eliminada con éxito.'); // Muestra el mensaje de éxito
+        setTimeout(() => setSuccessMessage(''), 2000); // Oculta el mensaje después de 5 segundos
+        const estimatedWaitTime = 3000;
         setTimeout(() => {
           window.history.go(-1);
         }, estimatedWaitTime);
@@ -124,7 +128,8 @@ if (isLoading) {
       ),
       React.createElement('div', { className: 'service-keys-container' },
         React.createElement(ServiceKey),
-      )
+      ),
+        successMessage && React.createElement(SuccessMessage, { message: successMessage, isVisible: true }),
     )
   );
 }

@@ -435,15 +435,15 @@ body {
 .button-search {
     padding: 10px;
 }
-.container-TableElements{
-  padding-left: 0px;
-}
+
 #Estados {
     display: inline-block;
     padding: 0;
     margin: 0;
 }
-
+.container-TableElements{
+  padding-left: 0px;
+}
 .Refresh-Button {
     display: inline-block;
     padding: 0;
@@ -502,17 +502,31 @@ body {
 
 
 .dialog-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed; /* Asegura que el overlay tenga posición relativa al viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 900; /* Valor inicial para el diálogo principal */
 }
+
+.alert-overlay {
+  position: fixed; /* Similar al diálogo principal */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Más alto que el diálogo principal para asegurar que aparezca por encima */
+}
+
 
 
 .dialog-content {
@@ -541,6 +555,8 @@ body {
     border: solid 1px #ccc;
     max-width: calc(100% - 20px);
     max-height: calc(100% - 20px);
+    min-width: calc(50%);
+    min-height: calc(50%);
 }
 
 .dialog-button {
@@ -613,6 +629,7 @@ body {
   right: 5%;
 }
 
+
 .eleccion-container {
     border: 1px solid #B3B3B3;
     background: #F6F6F6;
@@ -647,4 +664,21 @@ body {
 .manual-text {
     font-size: 200%;
     color: black;
+}
+
+.success-message {
+  position: fixed; /* Cambiado de absolute a fixed */
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: black;
+  border-radius: 5px;
+  z-index: 10;
+  width: 20em;
+  height: auto;
+}
+
+.success-message p {
+  margin: 0;
+  color: white;
 }

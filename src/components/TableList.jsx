@@ -7,7 +7,8 @@ function TableList({ items, refreshItems }) {
 
   const handleClickElement = (item) => {
     const itemId = item.id;
-    window.location.href = `/Detalles/${itemId}`; // Ajusta la URL según sea necesario
+    if(item.topic){window.location.href = `/DetallesIncidencia/${itemId}`;} // Ajusta la URL según sea necesario
+    else if(item.room_name){window.location.href = `/DetallesLlaves/${itemId}`;} // Ajusta la URL según sea necesario
     setSelectedItem(item);
     setIsDialogOpen(true);
   };

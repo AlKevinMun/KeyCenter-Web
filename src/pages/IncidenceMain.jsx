@@ -10,6 +10,7 @@ import InputSelector from "../components/InputSelector.jsx";
 import TableList from "../components/TableList.jsx";
 import AddButton from "../components/AddButton.jsx";
 import CreateIncidence from "../components/CreateIncidence.jsx";
+import SuccessMessage from "../components/SuccessMessage.jsx";
 import { getIncidence } from "../service/Axios.jsx";
 
 function MainPage() {
@@ -17,6 +18,7 @@ function MainPage() {
   const [incidences, setIncidences] = useState([]);
   const [filterState, setFilterState] = useState('all');
   const [selectedIncidence, setSelectedIncidence] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
   const [stateOptions, setStateOptions] = useState([
     { value: 'all', label: 'Todas' },
     { value: '0', label: 'Abierto' },
@@ -39,6 +41,13 @@ function MainPage() {
     } catch (error) {
       console.error("Error al actualizar las incidencias:", error);
     }
+  };
+
+  // Función para manejar el mensaje de éxito
+  const handleSuccess = (message) => {
+    setSuccessMessage(message);
+    console.log(message + 'test');
+    setTimeout(() => setSuccessMessage(''), 3000); // Oculta el mensaje después de 5 segundos
   };
 
   const handleStateChange = (event) => {
@@ -78,7 +87,8 @@ function MainPage() {
           ServiceKey(),
         )
       ),
-      React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog, incidence: selectedIncidence, onRefresh: refreshIncidences })
+      successMessage && React.createElement(SuccessMessage, { message: successMessage, isVisible: true }),
+      React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog, incidence: selectedIncidence,onSuccess: handleSuccess ,onRefresh: refreshIncidences })
     )
   );
 }
