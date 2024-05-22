@@ -1,10 +1,16 @@
 import React from "react";
-
+/*
+* El siguiente componente se trata de los elementos visibles dentro del componente de TableList.
+* A la hora de crear el componente se debe insertar una string con el titulo que quieres establecer en el elemento,
+* una string con la descripción del elemento, otra con la fecha, y una ultima con el estado. También se necesita una
+* functión que se utilizara cuando se pulse dentro del propio elemento.
+*/
 function TableElement({ name, description, date, status, onClick }) {
+    // Dependiendo el valor proporcionado por status, se le proporcionara un nuevo valor.
     if (status === 0) { status = 'Enviado' }
     else if (status === 1) { status = 'En curso' }
     else if (status === -1) { status = 'Finalizado' }
-
+    // Cambia el formato de la fecha a la que nosotros queramos.
     const formattedDate = new Date(date).toLocaleString('es-ES', {
         year: 'numeric',
         month: '2-digit',

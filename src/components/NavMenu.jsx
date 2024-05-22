@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+/*
+* El siguiente componente se trata del menu de navegación.
+*/
 function NavMenu() {
 
+    // Esta función es un estilo unico creado para poder tener el menu de forma "Sticky".
     const navContainerStyle = {
         position: "-webkit-sticky",
         position: "sticky",
