@@ -1,15 +1,27 @@
 import React, { useState, useRef } from 'react';
 import InputText from "./InputText.jsx"
 import { postIncidence } from "../service/Axios.jsx";
-
+import Alert from './Alert';
+/*
+* El siguiente componente se trata de una ventana emergente para crear específicamente una llave. Se intento crear
+* Como una ventana emergente global, pero no era posible por la diferencia de campos entre todos los objetos.
+* Para invocar este componente se requiere pasarle un booleano que indica si esta, o no abierto/visible.
+* Una  una función para cuando se pulse el botón.
+* El componente esta pensado para que la función que se le mande modifique el booleano haciendo asi que se cierre la ventana.
+* Una función que actualiza todas las incidencias una vez creada la nueva, y una llamada a una función para establecer
+* un comportamiento si funciona todo con exito.
+*/
 const CreateKey = ({ isOpen, onClose }) => {
-  // Correctly use useRef to create a ref object
+  // Esta constante se trata del documento con los datos necesarios para la creación de la llave.
   const KeyRef = useRef({
-    "id": '', // Identificador del aula, por ejemplo, 2.02 y es la de la clase de 4.5 de la ESO
+    "id": '',
     "room_name": '',
     "cantidad": 0
   });
-
+  /*
+  * Esta constante actua como función. Lo que hace es comprobar que inputText has modificado (el valor name) y event
+  * es el valor que has escrito. Almacena este valor en el useRef que corresponda.
+  */
   const handleOnChange = (name, event) => {
     const { value } = event.target;
     let newValue = value;
@@ -25,8 +37,15 @@ const CreateKey = ({ isOpen, onClose }) => {
     IncidenceRef.current[newName] = newValue;
   }
 
-
-
+  /*
+  * Esta constante actua como función. Se lanza una vez esten todos los datos bien formados, y si no da ningun error sale
+  * una pequeña notificación indicando que se a creado la incidencia con exito. También se manejan los errores en dicha
+  * función.
+  */
+  /*
+   * TO DO
+   * Toda la función de handleSubmit, junto al uso del alert.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
 

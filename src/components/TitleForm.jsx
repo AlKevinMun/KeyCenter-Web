@@ -1,5 +1,9 @@
 import React from "react";
-
+/*
+* El siguiente componente se trata del titulo de las paginas.
+* A la hora de crear el componente se debe insertar el texto que se quiere mostrar en el titulo (name),
+*
+*/
 function TitleForm(name) {
 
     let a;

@@ -30,6 +30,7 @@ function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log('test');
         try {
             const response = await auth(JSON.stringify(LoginRef.current));
             console.log(response.data);
@@ -52,7 +53,7 @@ function SignIn() {
                         React.createElement('div', { className: 'signform-container' },
                             InputText('Nombre de usuario / Correo electronico', handleUsernameChange, {value: email }),
                             InputText('Contraseña', handlePasswordChange, {type: 'password', value: password}),
-                            AddButton('Identificar', 'button-group')
+                            AddButton('Identificar', 'button-group', handleSubmit)
                         ),
                     ),
                 ),

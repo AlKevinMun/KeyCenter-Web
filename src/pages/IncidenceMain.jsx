@@ -46,7 +46,6 @@ function MainPage() {
   // Función para manejar el mensaje de éxito
   const handleSuccess = (message) => {
     setSuccessMessage(message);
-    console.log(message + 'test');
     setTimeout(() => setSuccessMessage(''), 3000); // Oculta el mensaje después de 5 segundos
   };
 
