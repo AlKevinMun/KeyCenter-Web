@@ -32,10 +32,12 @@ function SignIn() {
         event.preventDefault();
         console.log('test');
         try {
-            const response = await auth(JSON.stringify(LoginRef.current));
+            console.log("Datos enviados:", LoginRef.current); // Depuración: Verifica los datos enviados
+            const response = await auth(LoginRef.current);
             console.log(response.data);
-            // Redirige al usuario al inicio después de iniciar sesión exitosamente
-            navigate('/inicio'); // Asume que '/inicio' es la ruta del inicio
+            // TODO:
+            // Almacenar token y email del usuario de manera global.
+            navigate('/'); // Asume que '/inicio' es la ruta del inicio
         } catch (error) {
             console.error(error);
         }
@@ -71,5 +73,3 @@ function SignIn() {
 }
 
 export default SignIn;
-
-// NECESIDAD DE QUE VUELVA ATRAS, Y QUE GUARDE EL ROL DEL USUARIO CON EL QUE SE A LOGEADO.

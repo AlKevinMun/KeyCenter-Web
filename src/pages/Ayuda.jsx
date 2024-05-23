@@ -9,7 +9,7 @@ import AddButton from "../components/AddButton.jsx"
 import { Link } from "react-router-dom";
 
 
-function SignIn() {
+function Ayuda() {
   return (
     React.createElement('div', { className: 'main-container' },
       Logo('resources/logotipoWeb.png'),
@@ -49,4 +49,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default Ayuda;

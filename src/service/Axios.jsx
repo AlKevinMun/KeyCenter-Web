@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
     headers: {
         'Content-Type': 'application/json',
         'Authorization': "Basic " + btoa('admin@elpuig.xeill.net' + ":" + '2444')
-        },
+    },
 });
 
 // Función para obtener usuarios
@@ -15,8 +15,8 @@ export const getUser = () => {
     return axiosInstance.get('/users');
 };
 // Función para llamar a la autenticación
-export const auth = () => {
-    return axios.get('/auth');
+export const auth = (data) => {
+    return axiosInstance.post('/auth', data, {baseURL: '/'});
 };
 // Función para obtener una incidencia
 export const getIncidence = () => {
