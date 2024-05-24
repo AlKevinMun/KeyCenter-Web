@@ -5,7 +5,12 @@ import NavRoute from "../components/NavRoute.jsx"
 import FolderTree from "../components/FolderTree.jsx"
 import TitleForm from "../components/TitleForm.jsx"
 import ServiceKey from "../components/ServiceKeys.jsx"
+console.log(sessionStorage);
 
+/* Forma de obtener el rol del usuario que se encuentra actualmente logeado.
+const loginUserObject = JSON.parse(sessionStorage.loginUser);
+const rol = loginUserObject.rol;
+*/
 function MainPage() {
   return (
     React.createElement('div', { className: 'main-container' },

@@ -51,6 +51,10 @@ export const postKey = (data) => {
 export const deleteKey = (id) => {
     return axiosInstance.delete(`/llaves/${id}`);;
 };
+// Función para buscar un usuario por su correo
+export const getUserByEmail = (email) => {
+    return axiosInstance.get(`/users/email/${email}`);;
+};
 
 
 export default axiosInstance;

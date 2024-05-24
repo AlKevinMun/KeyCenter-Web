@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from 'axios';
+import React, { useState, useRef } from "react";
 import Logo from "../components/Logo.jsx";
 import NavMenu from "../components/NavMenu.jsx";
 import NavRoute from "../components/NavRoute.jsx";
-import FolderTree from "../components/FolderTree.jsx";
 import TitleForm from "../components/TitleForm.jsx";
 import InputText from "../components/InputText.jsx";
 import AddButton from "../components/AddButton.jsx";
 import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
-import { auth } from "../service/Axios.jsx";
+import { auth, getUserByEmail } from "../service/Axios.jsx";
 
 function SignIn() {
     const [email, setEmail] = useState('');
@@ -30,13 +28,17 @@ function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('test');
         try {
             console.log("Datos enviados:", LoginRef.current); // Depuración: Verifica los datos enviados
             const response = await auth(LoginRef.current);
             console.log(response.data);
-            // TODO:
-            // Almacenar token y email del usuario de manera global.
+
+            // Guarda el token y el correo electrónico en sessionStorage
+            sessionStorage.setItem('token', response.data);
+            const response1 = await getUserByEmail(email);
+            console.log(response1.data);
+            sessionStorage.setItem('loginUser', JSON.stringify(response1.data));
+
             navigate('/'); // Asume que '/inicio' es la ruta del inicio
         } catch (error) {
             console.error(error);
@@ -53,7 +55,7 @@ function SignIn() {
                     TitleForm('Sign in'),
                     React.createElement('form', { className: 'form-container', onSubmit: handleSubmit },
                         React.createElement('div', { className: 'signform-container' },
-                            InputText('Nombre de usuario / Correo electronico', handleUsernameChange, {value: email }),
+                            InputText('Correo electronico', handleUsernameChange, {value: email }),
                             InputText('Contraseña', handlePasswordChange, {type: 'password', value: password}),
                             AddButton('Identificar', 'button-group', handleSubmit)
                         ),
