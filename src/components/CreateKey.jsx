@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import InputText from "./InputText.jsx"
-import { postIncidence } from "../service/Axios.jsx";
+import { postKey } from "../service/Axios.jsx";
 import Alert from './Alert';
 /*
 * El siguiente componente se trata de una ventana emergente para crear específicamente una llave. Se intento crear
@@ -11,13 +11,14 @@ import Alert from './Alert';
 * Una función que actualiza todas las incidencias una vez creada la nueva, y una llamada a una función para establecer
 * un comportamiento si funciona todo con exito.
 */
-const CreateKey = ({ isOpen, onClose }) => {
+const CreateKey = ({ isOpen, onClose, onRefresh, onSuccess}) => {
   // Esta constante se trata del documento con los datos necesarios para la creación de la llave.
   const KeyRef = useRef({
     "id": '',
     "room_name": '',
-    "cantidad": 0
   });
+  const [showAlert, setShowAlert] = useState(false); // useState para controlar la visibilidad del componente de alerta.
+  const [msgError, setMsgError] = useState(''); // useState para almacenar el mensaje de error.
   /*
   * Esta constante actua como función. Lo que hace es comprobar que inputText has modificado (el valor name) y event
   * es el valor que has escrito. Almacena este valor en el useRef que corresponda.
@@ -29,12 +30,11 @@ const CreateKey = ({ isOpen, onClose }) => {
 
     if (name === 'Identificador') { newName = "id"; }
     else if (name === 'Nombre del aula') { newName = "room_name"; }
-    else if (name === 'Cantidad de llaves') { newName = "cantidad"; }
 
     console.log(newValue);
     console.log(newName);
-    console.log(keyRef.current[newName] = newValue);
-    IncidenceRef.current[newName] = newValue;
+    console.log(KeyRef.current[newName] = newValue);
+    KeyRef.current[newName] = newValue;
   }
 
   /*
@@ -49,8 +49,28 @@ const CreateKey = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+
+    // Verificar si los campos están vacíos
+    if (!KeyRef.current.room_name.trim() ||!KeyRef.current.id.trim()) {
+      if(!KeyRef.current.room_name){setMsgError('No se puede crear la llave sin establecer a que aula pertenece la llave')}
+      else if(!KeyRef.current.id){setMsgError('No se puede crear la llave sin su identificador.')}
+      if(!KeyRef.current.room_name && !KeyRef.current.description){setMsgError('No se puede crear la llave con los campos vacios.')}
+      setShowAlert(true); // Muestra el componente de alerta si algún campo está vacío
+      return; // Evita continuar con la llamada a postIncidence
+    }
+
+    // Utiliza la función del axios para mandar la incidencia a la base de  datos.
+    postKey(JSON.stringify(KeyRef.current))
+     .then(response => {
+        console.log('Llave creada con ID:', response.data.id);
+        onRefresh(); // Actualiza las incidencias para mostrar la nueva creada
+        // Se resetean los valores del UseRef
+        KeyRef.current.id = '';
+        KeyRef.current.room_name = '';
+        onSuccess('Llave creada con éxito.'); // Sale la pequeña notificación.
+      })
       .catch(error => {
-        console.error('Error al crear la incidencia:', error);
+        console.error('Error al crear la llave:', error);
       });
     onClose();
   };
@@ -63,21 +83,28 @@ const CreateKey = ({ isOpen, onClose }) => {
     return null;
   }
 
-  return React.createElement('div', { className: 'dialog-overlay' },
-    React.createElement('div', { className: 'dialog-content' },
-      React.createElement('button', { className: 'close-button', onClick: handleClose }, 'X'),
-      React.createElement('h2', null, 'Crear Nuevo Asunto'),
-      React.createElement('form', { onSubmit: handleSubmit },
-        React.createElement('label', { className: 'dialog-title' }, 'Asunto',),
-        React.createElement('input', { className: 'dialog-description', onBlur: handleOnChange.bind(null, 'Asunto') }),
-        React.createElement('br'),
-        React.createElement('label', { className: 'dialog-title' }, 'Descripcion',),
-        React.createElement('textarea', { className: 'dialog-description', onBlur: handleOnChange.bind(null, 'Descripcion') }),
-        React.createElement('br'),
-        React.createElement('button', { className: 'button-group dialog-button', type: 'submit' }, 'Enviar')
-      )
-    )
+  return (
+    <>
+      {showAlert && <Alert msgError={msgError} isOpen={true} onClose={() => setShowAlert(false)} />}
+      {!isOpen? null : (
+        React.createElement('div', { className: 'dialog-overlay' },
+          React.createElement('div', { className: 'dialog-content' },
+            React.createElement('button', { className: 'close-button', onClick: handleClose }, 'X'),
+            React.createElement('h2', null, 'Crear Nueva Llave'),
+            React.createElement('form', { onSubmit: handleSubmit },
+              React.createElement('label', { className: 'dialog-title' }, 'Identificador',),
+              React.createElement('input', {type: 'number', className: 'dialog-description', onBlur: handleOnChange.bind(null, 'Identificador') }),
+              React.createElement('br'),
+              React.createElement('label', { className: 'dialog-title' }, 'Nombre del aula',),
+              React.createElement('input', { className: 'dialog-description', onBlur: handleOnChange.bind(null, 'Nombre del aula') }),
+              React.createElement('br'),
+              React.createElement('button', { className: 'button-group dialog-button', type: 'submit' }, 'Enviar')
+            )
+          )
+        )
+      )}
+    </>
   );
 };
 
-export default CreateIncidence;
+export default CreateKey;

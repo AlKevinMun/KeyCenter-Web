@@ -9,7 +9,8 @@ import SearchBar from "../components/SearchBar.jsx";
 import InputSelector from "../components/InputSelector.jsx";
 import TableList from "../components/TableList.jsx";
 import AddButton from "../components/AddButton.jsx";
-//import CreateIncidence from "../components/CreateIncidence.jsx";
+import CreateKey from "../components/CreateKey.jsx";
+import SuccessMessage from "../components/SuccessMessage.jsx";
 import { getKey } from "../service/Axios.jsx";
 
 function MainPage() {
@@ -17,6 +18,7 @@ function MainPage() {
   const [keys, setKeys] = useState([]);
   const [filterState, setFilterState] = useState('2');
   const [selectedKey, setSelectedKey] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
   const [stateOptions, setStateOptions] = useState([
     { value: 'all', label: 'Todas' },
     { value: '0', label: 'Disponibles' },
@@ -41,6 +43,12 @@ function MainPage() {
     }
   };
 
+  // Función para manejar el mensaje de éxito
+  const handleSuccess = (message) => {
+    setSuccessMessage(message);
+    setTimeout(() => setSuccessMessage(''), 3000); // Oculta el mensaje después de 5 segundos
+  };
+
   const handleStateChange = (event) => {
     setFilterState(event.target.value);
   };
@@ -51,7 +59,7 @@ function MainPage() {
 
   const filteredKeys = keys.filter(key => {
     if (filterState === 'all') return true; // Si el filtro está en 'all', muestra todas las llaves
-    if (filterState === '0') return key.user_id === 0; // Si no hay filtro aplicado, no muestra ninguna llaves
+    if (filterState === '0') return key.user_id === 1; // Si no hay filtro aplicado, no muestra ninguna llaves
     return key.user_id >1;
   });
 
@@ -77,7 +85,8 @@ function MainPage() {
           ServiceKey(),
         )
       ),
-      //React.createElement(CreateIncidence, { isOpen: isDialogOpen, onClose: handleCloseDialog, keys: selectedKey  })
+      successMessage && React.createElement(SuccessMessage, { message: successMessage, isVisible: true }),
+      React.createElement(CreateKey, { isOpen: isDialogOpen, onClose: handleCloseDialog, keys: selectedKey, onSuccess: handleSuccess ,onRefresh: refreshKeys})
     )
   );
 }

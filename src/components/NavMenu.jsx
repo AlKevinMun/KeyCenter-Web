@@ -1,32 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Alert from './Alert'; // Importa el componente Alert
 
 function NavMenu() {
     const navContainerStyle = {
         position: "-webkit-sticky", // Posicionamiento fijo en la parte superior
-        position: "sticky",
         top: 0,
-        zIndex: 1000 // Para asegurar que el menú se muestre sobre otros elementos
+        zIndex: 500 // Para asegurar que el menú se muestre sobre otros elementos
     };
 
-    const [isAlertVisible, setIsAlertVisible] = useState(false); // Estado para controlar la visibilidad del Alert
-
-    const showAlert = () => {
-        setIsAlertVisible(true); // Función para mostrar el Alert
-    };
-
-    const closeAlert = () => {
-        setIsAlertVisible(false); // Función para cerrar el Alert
-    };
+  const [showAlert, setShowAlert] = useState(false); // useState para controlar la visibilidad del componente de alerta.
 
     // Verifica si el usuario está logueado
     const isLoggedIn = sessionStorage.getItem('loginUser')!== null;
+    const navigate = useNavigate();
 
     // Función para redirigir al inicio si el usuario no está logueado
     const redirectToHomeIfNotLoggedIn = () => {
         if (!isLoggedIn) {
-            showAlert(); // Muestra el Alert si el usuario no está logueado
+            setShowAlert(true) // Muestra el Alert si el usuario no está logueado
+            setTimeout(() => { // Espera un poco antes de navegar
+                navigate('/');
+            }, 1); // Espera medio segundo para dar tiempo a que el estado se actualice
             return false; // Evita la navegación
         }
         return true; // Permite la navegación
@@ -52,12 +47,12 @@ function NavMenu() {
 
     return (
         <>
-            {isAlertVisible && <Alert msgError="Debes estar logueado para acceder a esta página." onClose={closeAlert} />} {/* Muestra el Alert si isAlertVisible es true */}
+            {!isLoggedIn && showAlert && <Alert msgError="Debes iniciar sesión para acceder a esta página." isOpen={true} onClose={() => setShowAlert(false)} />} {/* Muestra el Alert si isAlertVisible es true */}
             <nav className="nav-container" style={navContainerStyle}> {/* Contenedor del menú de navegación */}
                 <div className="menu-container">
                     <ul className="menu-table">
                         <li className="menu-element">
-                            <Link to="/" className="menu-link" onClick={redirectToHomeIfNotLoggedIn}><strong>Inici</strong></Link>
+                            <Link to="/" className="menu-link"><strong>Inici</strong></Link>
                         </li>
                         <li className="menu-element">
                             <Link to="/Llaves" className="menu-link" onClick={redirectToHomeIfNotLoggedIn}><strong>Llaves</strong></Link>

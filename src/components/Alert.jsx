@@ -7,13 +7,17 @@ import React from 'react';
 */
 const Alert = ({msgError, isOpen, onClose}) => {
 
+  let tituloAlert = "";
+  if(msgError === "Debes iniciar sesión para acceder a esta página.")
+  {tituloAlert='Falta de autorización'; console.log("jaja bobo")}
+  else{tituloAlert="Faltan campos por rellenar"}
   if (!isOpen) {
     return null;
   }
 
   return React.createElement('div', { className: 'alert-overlay' },
     React.createElement('div', { className: 'dialog-content' },
-      React.createElement('h1', null, 'Faltan campos por rellenar'),
+      React.createElement('h1', null, tituloAlert),
       React.createElement('p', { className: 'dialog-text' }, msgError),
       React.createElement('br'),
       React.createElement('button', { className: 'button-group dialog-button', type: 'submit', onClick: onClose }, 'Aceptar')

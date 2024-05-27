@@ -26,9 +26,13 @@ export const getIncidence = () => {
 export const getIncidenceById = (id) => {
     return axiosInstance.get(`/incidences/${id}`);;
 };
-// Función para actualizar una incidencia
+// Función para crear una incidencia
 export const postIncidence = (data) => {
     return axiosInstance.post('/incidences', data);
+};
+// Función para actualizar una incidencia
+export const putIncidence = (data, id) => {
+    return axiosInstance.post(`/incidences/${id}`, data);
 };
 // Función para borrar una incidencia
 export const deleteIncidence = (id) => {

@@ -19,6 +19,12 @@ function ShowIncidence() {
   const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
   const [successMessage, setSuccessMessage] = useState('');
 
+  // Leer el rol del usuario desde sessionStorage
+  const currentUserRole = sessionStorage.getItem('loginUser')? JSON.parse(sessionStorage.getItem('loginUser')).rol : '';
+  let admin = false;
+  if(currentUserRole === 'Admin'){admin=true}
+  console.log()
+
   useEffect(() => {
     const obtenerIncidencia = async () => {
       try {
@@ -103,7 +109,6 @@ if (isLoading) {
     }
   };
 
-
   return React.createElement('div', { className: 'main-container', style: require('../style.css') },
     Logo('../../resources/logotipoWeb.png'),
     React.createElement(NavMenu),
@@ -121,8 +126,8 @@ if (isLoading) {
             React.createElement('p', { className: 'IncidenceMore_Status', style: statusStyle }, incidence.state),
             React.createElement('p', { className: 'IncidenceMore_Description' }, incidence.description),
             React.createElement('p', { className: 'IncidenceMore_User' }, 'Creado por: ', nameUser),
-            AddButton('Editar incidencia', 'button-group IncidenceMore_ButtonEdit', null),
-            AddButton('Borrar incidencia', 'button-group IncidenceMore_ButtonDelete', handleDelete)
+            admin && AddButton('Editar incidencia', 'button-group IncidenceMore_ButtonEdit', null),
+            admin && AddButton('Borrar incidencia', 'button-group IncidenceMore_ButtonDelete', handleDelete)
           ),)
         ),
       ),
