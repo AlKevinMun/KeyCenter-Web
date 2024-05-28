@@ -8,6 +8,7 @@ import TitleForm from "../components/TitleForm.jsx";
 import ServiceKey from "../components/ServiceKeys.jsx";
 import AddButton from "../components/AddButton.jsx";
 import SuccessMessage from "../components/SuccessMessage.jsx";
+import EditIncidence from "../components/EditIncidence.jsx";
 import { getIncidenceById, getUser, deleteIncidence } from "../service/Axios.jsx";
 
 function ShowIncidence() {
@@ -18,12 +19,23 @@ function ShowIncidence() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
   const [successMessage, setSuccessMessage] = useState('');
+  // New state variable to manage the visibility of the edit modal
+  const [isEditing, setIsEditing] = useState(false);
+
+  // Function to toggle the edit modal visibility
+  const openEditModal = () => {
+    setIsEditing(true);
+  };
+
+  // Function to toggle the edit modal visibility
+  const closeEditModal = () => {
+    setIsEditing(false);
+  };
 
   // Leer el rol del usuario desde sessionStorage
   const currentUserRole = sessionStorage.getItem('loginUser')? JSON.parse(sessionStorage.getItem('loginUser')).rol : '';
   let admin = false;
   if(currentUserRole === 'Admin'){admin=true}
-  console.log()
 
   useEffect(() => {
     const obtenerIncidencia = async () => {
@@ -108,6 +120,13 @@ if (isLoading) {
       }
     }
   };
+  // Function to handle successful edit operation
+  const handleSuccessfulEdit = (message) => {
+    setSuccessMessage(message);
+    setTimeout(() => setSuccessMessage(''), 2000); // Clear the message after 2 seconds
+    // Refresh the list of incidents here if needed
+  };
+
 
   return React.createElement('div', { className: 'main-container', style: require('../style.css') },
     Logo('../../resources/logotipoWeb.png'),
@@ -126,7 +145,7 @@ if (isLoading) {
             React.createElement('p', { className: 'IncidenceMore_Status', style: statusStyle }, incidence.state),
             React.createElement('p', { className: 'IncidenceMore_Description' }, incidence.description),
             React.createElement('p', { className: 'IncidenceMore_User' }, 'Creado por: ', nameUser),
-            admin && AddButton('Editar incidencia', 'button-group IncidenceMore_ButtonEdit', null),
+            admin && AddButton('Cambiar estado', 'button-group IncidenceMore_ButtonEdit', openEditModal),
             admin && AddButton('Borrar incidencia', 'button-group IncidenceMore_ButtonDelete', handleDelete)
           ),)
         ),
@@ -135,6 +154,7 @@ if (isLoading) {
         React.createElement(ServiceKey),
       ),
         successMessage && React.createElement(SuccessMessage, { message: successMessage, isVisible: true }),
+        <EditIncidence isOpen={isEditing} onClose={closeEditModal} onRefresh={null} onSuccess={handleSuccessfulEdit} incidence={incidenceId} />
     )
   );
 }

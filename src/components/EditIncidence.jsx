@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import InputText from "./InputText.jsx";
-import InputSelector from "./inputSelector.jsx"
-import { postIncidence } from "../service/Axios.jsx";
+import InputSelector from "./InputSelector.jsx"
+import { putIncidence } from "../service/Axios.jsx";
 import Alert from './Alert';
 /*
 * El siguiente componente se trata de una ventana emergente para editar específicamente una incidencia. Se intento crear
@@ -22,6 +22,12 @@ const EditIncidence = ({ isOpen, onClose, onRefresh, onSuccess, incidence }) => 
     "state":''
   });
   const [showAlert, setShowAlert] = useState(false); // useState para controlar la visibilidad del componente de alerta.
+    const [stateOptions, setStateOptions] = useState([
+      { value: '0', label: 'Abierto' },
+      { value: '1', label: 'En Proceso' },
+      { value: '-1', label: 'Cerrado' }
+    ]);
+
   /*
   * Esta constante actua como función. Lo que hace es comprobar que inputText has modificado (el valor name) y event
   * es el valor que has escrito. Almacena este valor en el useRef que corresponda.
@@ -46,13 +52,12 @@ const EditIncidence = ({ isOpen, onClose, onRefresh, onSuccess, incidence }) => 
     e.preventDefault();
 
     // Utiliza la función del axios para mandar la incidencia a la base de  datos.
-    PutIncidence(JSON.stringify(IncidenceRef.current), incidence.id)
+    putIncidence(JSON.stringify(IncidenceRef.current), incidence)
      .then(response => {
-        console.log('Incidencia creada con ID:', response.data.id);
+        console.log('Incidencia editada con ID:', response.data.id);
         onClose(); // Cierra el diálogo después de éxito
-        onRefresh(); // Actualiza las incidencias para mostrar la nueva creada
         // Se resetean los valores del UseRef
-        onSuccess('Incidencia creada con éxito.'); // Sale la pequeña notificación.
+        onSuccess('Incidencia editada con éxito.'); // Sale la pequeña notificación.
       })
      .catch(error => {
         console.error('Error al crear la incidencia:', error);
@@ -66,6 +71,10 @@ const EditIncidence = ({ isOpen, onClose, onRefresh, onSuccess, incidence }) => 
     }
   };
 
+  const handleSelectorChange = (newValue) => {
+    IncidenceRef.current["state"] = newValue;
+  };
+
   // Mostrar el componente de alerta si showAlert es verdadero
   return (
     <>
@@ -76,8 +85,8 @@ const EditIncidence = ({ isOpen, onClose, onRefresh, onSuccess, incidence }) => 
             React.createElement('h2', null, 'Editar incidencia'),
             React.createElement('form', { onSubmit: handleSubmit },
               React.createElement('label', { className: 'dialog-title' }, 'Estado',),
-              InputSelector('Estados', null, null, null, null, 'Estados')
-              React.createElement('button', { className: 'button-group dialog-button', type: 'submit' }, 'Enviar')
+              React.createElement(InputSelector, {name: 'Estado', data: stateOptions, onChange: handleOnChange.bind(null, 'Estado'), onBlur: null, id: `Estados`}),
+              React.createElement('button', { className: 'button-group dialog-button', type:'submit' }, 'Enviar')
             )
           )
         )
