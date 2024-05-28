@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function InputSelector(name, data, plural, onChange, onBlur, id) {
+function InputSelector({name, data, onChange, onBlur, id}) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
