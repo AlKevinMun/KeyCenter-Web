@@ -76,7 +76,7 @@ function MainPage() {
           TitleForm('Llaves'),
           React.createElement('div', { className: 'Search-hooks' },
             SearchBar('Buscar Llaves'),
-            InputSelector('Estados', stateOptions, null, handleStateChange, null, 'Estados'),
+            React.createElement(InputSelector, {name: 'Estados', data: stateOptions, onChange: handleStateChange, onBlur: null, id: `Estados`}),
           ),
           React.createElement(TableList, { items: filteredKeys, refreshItems: refreshKeys }),
           AddButton("Añadir nueva llave", 'button-group',handleOpenDialog),

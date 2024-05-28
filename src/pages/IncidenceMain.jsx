@@ -21,9 +21,9 @@ function MainPage() {
   const [successMessage, setSuccessMessage] = useState('');
   const [stateOptions, setStateOptions] = useState([
     { value: 'all', label: 'Todas' },
-    { value: '0', label: 'Abierto' },
-    { value: '1', label: 'En Proceso' },
-    { value: '2', label: 'Cerrado' }
+    { value: '0', label: 'Enviado' },
+    { value: '1', label: 'En curso' },
+    { value: '-1', label: 'Finalizado' }
   ]);
 
   const handleOpenDialog = () => { setIsDialogOpen(true); };
@@ -77,7 +77,7 @@ function MainPage() {
           TitleForm('Incidencias'),
           React.createElement('div', { className: 'Search-hooks' },
             SearchBar('Buscar Incidencias'),
-            InputSelector('Estados', stateOptions, null, handleStateChange, null, 'Estados'),
+            React.createElement(InputSelector, {name: 'Estados', data: stateOptions, onChange: handleStateChange, onBlur: null, id: `Estados`}),
           ),
           React.createElement(TableList, { items: filteredIncidences, refreshItems: refreshIncidences }),
           AddButton("Añadir nueva incidencia", 'button-group',handleOpenDialog),

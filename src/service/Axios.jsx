@@ -32,7 +32,7 @@ export const postIncidence = (data) => {
 };
 // Función para actualizar una incidencia
 export const putIncidence = (data, id) => {
-    return axiosInstance.post(`/incidences/${id}`, data);
+    return axiosInstance.put(`/incidences/${id}`, data);
 };
 // Función para borrar una incidencia
 export const deleteIncidence = (id) => {
@@ -53,11 +53,15 @@ export const postKey = (data) => {
 };
 // Función para borrar una llave
 export const deleteKey = (id) => {
-    return axiosInstance.delete(`/llaves/${id}`);;
+    return axiosInstance.delete(`/llaves/${id}`);
 };
 // Función para buscar un usuario por su correo
 export const getUserByEmail = (email) => {
-    return axiosInstance.get(`/users/email/${email}`);;
+    return axiosInstance.get(`/users/email/${email}`);
+};
+// Función para obtener un qr via id
+export const getQrById = (id) => {
+    return axiosInstance.get(`/qr/${id}`);
 };
 
 
