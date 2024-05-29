@@ -51,6 +51,10 @@ export const getKeyById = (id) => {
 export const postKey = (data) => {
     return axiosInstance.post('/llaves', data);
 };
+// Función para actualizar una llave
+export const putKey = (data, id) => {
+    return axiosInstance.put(`/llaves/${id}`, data);
+};
 // Función para borrar una llave
 export const deleteKey = (id) => {
     return axiosInstance.delete(`/llaves/${id}`);

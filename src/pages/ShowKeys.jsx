@@ -8,7 +8,7 @@ import TitleForm from "../components/TitleForm.jsx";
 import ServiceKey from "../components/ServiceKeys.jsx";
 import AddButton from "../components/AddButton.jsx";
 import SuccessMessage from "../components/SuccessMessage.jsx";
-//import EditKey from "../components/EditKey.jsx"; // Asumiendo que existe un componente para editar llaves
+import EditKey from "../components/EditKey.jsx"; // Asumiendo que existe un componente para editar llaves
 import { getKeyById, getUser, getQrById, deleteKey } from "../service/Axios.jsx"; // Asumiendo que hay funciones para interactuar con llaves
 
 function ShowKeys() {
@@ -39,6 +39,8 @@ function ShowKeys() {
 
   const currentUserRole = sessionStorage.getItem('loginUser')? JSON.parse(sessionStorage.getItem('loginUser')).rol : '';
   let admin = false;
+  const currentUserId = sessionStorage.getItem('loginUser')? JSON.parse(sessionStorage.getItem('loginUser')).id : '';
+  let sameUser = false;
   if (currentUserRole === 'Admin') admin = true;
 
   useEffect(() => {
@@ -95,7 +97,7 @@ function ShowKeys() {
     return <div>Cargando...</div>;
   }
 
- if (key.user_id > 2) { keyState= 'Ocupado' }
+ if (key.user_id !==1) { keyState= 'Ocupado' }
  else if (key.user_id === 1) { keyState = 'Disponible' }
 
   const formattedDate = new Date(key.hora).toLocaleString('es-ES', {
@@ -133,8 +135,16 @@ function ShowKeys() {
       }
   };
 
+  // Function to handle successful edit operation
+    const handleSuccessfulEdit = (message) => {
+      setSuccessMessage(message);
+      setTimeout(() => setSuccessMessage(''), 2000); // Clear the message after 2 seconds
+      // Refresh the list of incidents here if needed
+    };
+
   const statusStyle = { color: getStatusColor() };
 
+  if(currentUserId === key.user_id) sameUser = true;
 return React.createElement('div', { className: 'main-container', style: require('../style.css') },
     Logo('../../resources/logotipoWeb.png'),
     React.createElement(NavMenu),
@@ -155,7 +165,7 @@ return React.createElement('div', { className: 'main-container', style: require(
               React.createElement('div',{className: 'qr-container'},
                 qr && React.createElement('img', { src: qr, alt: 'QR Code', className: 'qr-code-image' }), // Muestra la imagen del QR
               ),
-              admin && AddButton('Assignar llave', 'button-group IncidenceMore_ButtonEdit', openEditModal),
+              admin && AddButton('Traspasar llave', 'button-group IncidenceMore_ButtonEdit', openEditModal),
               admin && AddButton('Borrar llave', 'button-group IncidenceMore_ButtonDelete', handleDelete)
             ),
           ),
@@ -165,7 +175,7 @@ return React.createElement('div', { className: 'main-container', style: require(
         React.createElement(ServiceKey),
       ),
         successMessage && React.createElement(SuccessMessage, { message: successMessage, isVisible: true }),
-        //<EditKey isOpen={isEditing} onClose={closeEditModal} onRefresh={null} onSuccess={() => setSuccessMessage('Llave actualizada con éxito')} key={keyId} />
+        keyId && <EditKey isOpen={isEditing} onClose={closeEditModal} onRefresh={null} onSuccess={handleSuccessfulEdit} keyID={keyId} />
     )
   );
 }
