@@ -15,12 +15,17 @@ import Alert from './Alert';
 const EditKey = ({ isOpen, onClose, onRefresh, onSuccess, keyID }) => {
   // Esta constante se trata del documento con los datos necesarios para la creación de la incidencia.
   const currentUserId = sessionStorage.getItem('loginUser')? JSON.parse(sessionStorage.getItem('loginUser')).id : '1';
+  // Esta constante se trata del documento con los datos necesarios para la creación de la llave.
   const KeyRef = useRef({
     "user_id": currentUserId,
   });
   const [showAlert, setShowAlert] = useState(false); // useState para controlar la visibilidad del componente de alerta.
   const [userOptions, setUserOptions] = useState([]);
 
+  /*
+    * Esta constante actua como función. Lo que hace es comprobar los usuarios para
+    * poder tener la opcion de dar la lista de usuarios actuales.
+    */
   useEffect(() => {
     getUser()
      .then(users => {
@@ -64,6 +69,9 @@ const EditKey = ({ isOpen, onClose, onRefresh, onSuccess, keyID }) => {
         console.log('Llave traspasada con ID:', response.data.id);
         onClose(); // Cierra el diálogo después de éxito
         // Se resetean los valores del UseRef
+        setTimeout(() => {
+          window.location.reload(); // Hace un refresh a la página tras 1 segundo
+        }, 1000);
         onSuccess('Llave traspasada con éxito.'); // Sale la pequeña notificación.
       })
      .catch(error => {
@@ -78,6 +86,7 @@ const EditKey = ({ isOpen, onClose, onRefresh, onSuccess, keyID }) => {
     }
   };
 
+  // Constante para actualizar el valor user_id cada vez que lo cambian en el InputSelector
   const handleSelectorChange = (newValue) => {
     KeyRef.current["user_id"] = newValue;
   };

@@ -11,13 +11,14 @@ function TableElement({ name, description, date, status, onClick }) {
     else if (status === 1) { status = 'En curso' }
     else if (status === -1) { status = 'Finalizado' }
     // Cambia el formato de la fecha a la que nosotros queramos.
-    const formattedDate = new Date(date).toLocaleString('es-ES', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
+    const formattedDate = date !== ' ' ?
+            new Date(date).toLocaleString('es-ES', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) : date;
     // Limitar el titulo
     const limitedTopic = name.length > 20 ? description.substring(0, 25) + '...' : name;
     // Limitar la descripción

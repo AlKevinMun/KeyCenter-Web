@@ -674,7 +674,7 @@ max-width: calc(100% - 55px);
 }
 
 .success-message {
-  position: fixed; /* Cambiado de absolute a fixed */
+  position: fixed;
   bottom: 20px;
   right: 20px;
   padding: 10px;

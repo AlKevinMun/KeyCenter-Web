@@ -13,6 +13,7 @@ function TableList({ items, refreshItems }) {
     const itemId = item.id;
     if(item.topic){window.location.href = `/DetallesIncidencia/${itemId}`;} // En el caso de que sea una Incidencia.
     else if(item.room_name){window.location.href = `/DetallesLlaves/${itemId}`;} // En el caso de que sea una Llave.
+    else if(item.rol){window.location.href = `/DetallesUsers/${itemId}`;} // En el caso de que sea una Users.
     setSelectedItem(item);
     setIsDialogOpen(true);
   };
@@ -43,11 +44,15 @@ function TableList({ items, refreshItems }) {
     React.createElement('div', { className: 'TableList-container' },
       React.createElement('ul', { className: 'container-TableElements' },
         items.map((item, index) =>
-          React.createElement(
-            TableElement,
-            { key: index, name: item.topic || item.id +" - "+item.room_name, description: item.description || " ", date: item.send_date || item.hora, status: item.state === undefined? checkKeyUsage(item.user_id) : item.state, onClick: () => handleClickElement(item) }
-          )
-        )
+                  React.createElement(TableElement,{
+                    key: index,
+                    name: item.topic || item.username || item.id +" - "+item.room_name,
+                    description: item.description || item.email || " ",
+                    date: item.rol === undefined? item.send_date || item.hora : " ",
+                    status: item.rol === undefined? item.state === undefined? checkKeyUsage(item.user_id) : item.state : item.rol,
+                    onClick: () => handleClickElement(item)
+                  })
+                )
       ),
     )
   );

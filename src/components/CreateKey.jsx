@@ -54,7 +54,7 @@ const CreateKey = ({ isOpen, onClose, onRefresh, onSuccess}) => {
     if (!KeyRef.current.room_name.trim() ||!KeyRef.current.id.trim()) {
       if(!KeyRef.current.room_name){setMsgError('No se puede crear la llave sin establecer a que aula pertenece la llave')}
       else if(!KeyRef.current.id){setMsgError('No se puede crear la llave sin su identificador.')}
-      if(!KeyRef.current.room_name && !KeyRef.current.description){setMsgError('No se puede crear la llave con los campos vacios.')}
+      if(!KeyRef.current.room_name && !KeyRef.current.id){setMsgError('No se puede crear la llave con los campos vacios.')}
       setShowAlert(true); // Muestra el componente de alerta si algún campo está vacío
       return; // Evita continuar con la llamada a postIncidence
     }

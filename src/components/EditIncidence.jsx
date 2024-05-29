@@ -55,6 +55,9 @@ const EditIncidence = ({ isOpen, onClose, onRefresh, onSuccess, incidence }) => 
      .then(response => {
         console.log('Incidencia editada con ID:', response.data.id);
         onClose(); // Cierra el diálogo después de éxito
+        setTimeout(() => {
+                  window.location.reload(); // Hace un refresh a la página tras 1 segundo
+        }, 1000);
         // Se resetean los valores del UseRef
         onSuccess('Incidencia editada con éxito.'); // Sale la pequeña notificación.
       })

@@ -12,6 +12,7 @@ import Ayuda from "./pages/Ayuda.jsx"
 import IncidenceMain from "./pages/IncidenceMain.jsx"
 import ShowIncidence from "./pages/ShowIncidence.jsx"
 import ShowKeys from "./pages/ShowKeys.jsx"
+import ShowUser from "./pages/ShowUser.jsx"
 import UsersMain from "./pages/UsersMain.jsx"
 
   function App() {
@@ -21,7 +22,7 @@ import UsersMain from "./pages/UsersMain.jsx"
             React.createElement(Route, {path:"/Incidencias", element: IncidenceMain()}),
             React.createElement(Route, {path:"/DetallesIncidencia/:incidenceId", element: <ShowIncidence /> }),
             React.createElement(Route, {path:"/DetallesLlaves/:keyId", element: <ShowKeys /> }),
-            React.createElement(Route, {path:"/DetallesUsuarios/:userId", element: <ShowIncidence /> }),
+            React.createElement(Route, {path:"/DetallesUsers/:userId", element: <ShowUser /> }),
             React.createElement(Route, {path:"/Manuales", element: ManualMain() }),
             React.createElement(Route, {path:"/Manuales/ManualUso", element: ManualUso() }),
             React.createElement(Route, {path:"/Manuales/ManualUsuario", element: ManualUsuario() }),

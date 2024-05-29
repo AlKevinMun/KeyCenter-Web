@@ -14,6 +14,26 @@ const axiosInstance = axios.create({
 export const getUser = () => {
     return axiosInstance.get('/users');
 };
+// Función para obtener una usuario via id
+export const getUserById = (id) => {
+    return axiosInstance.get(`/users/${id}`);;
+};
+// Función para buscar un usuario por su correo
+export const getUserByEmail = (email) => {
+    return axiosInstance.get(`/users/email/${email}`);
+};
+// Función para postear una usuario
+export const postUser = (data) => {
+    return axiosInstance.post('/users', data);
+};
+// Función para borrar una usuario
+export const deleteUser = (id) => {
+    return axiosInstance.delete(`/users/${id}`);
+};
+// Función para actualizar una usuario
+export const putUser = (id, data) => {
+    return axiosInstance.put(`/users/${id}`, data);
+};
 // Función para llamar a la autenticación
 export const auth = (data) => {
     return axiosInstance.post('/auth', data, {baseURL: '/'});
@@ -58,10 +78,6 @@ export const putKey = (data, id) => {
 // Función para borrar una llave
 export const deleteKey = (id) => {
     return axiosInstance.delete(`/llaves/${id}`);
-};
-// Función para buscar un usuario por su correo
-export const getUserByEmail = (email) => {
-    return axiosInstance.get(`/users/email/${email}`);
 };
 // Función para obtener un qr via id
 export const getQrById = (id) => {
