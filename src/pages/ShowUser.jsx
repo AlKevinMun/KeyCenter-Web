@@ -12,11 +12,6 @@ import EditUser from "../components/EditUser.jsx";
 import { getUserById, deleteUser, getQrById } from "../service/Axios.jsx";
 
 function ShowUser() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleOpenDialog = () => { setIsDialogOpen(true); };
-  const handleCloseDialog = () => { setIsDialogOpen(false); };
-
   const { userId } = useParams();
   const [user, setUser] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -126,9 +121,8 @@ function ShowUser() {
             React.createElement('div',{className: 'qr-container'},
               qr && React.createElement('img', { src: qr, alt: 'QR Code', className: 'qr-code-image' }),
             ),
-            admin && AddButton('Editar usuario', 'button-group UserMore_ButtonEdit', handleOpenDialog),
+            admin && AddButton('Editar usuario', 'button-group UserMore_ButtonEdit', openEditModal),
             admin && AddButton('Borrar usuario', 'button-group UserMore_ButtonDelete', handleDelete),
-            React.createElement(EditUser, { isOpen: isDialogOpen, onClose: handleCloseDialog, emailUser: user.email, idUser: userId }),
           ),)
         ),
       ),
@@ -136,7 +130,7 @@ function ShowUser() {
         React.createElement(ServiceKey),
       ),
       successMessage && React.createElement(SuccessMessage, { message: successMessage, isVisible: true }),
-      userId && <EditUser isOpen={isEditing} onClose={closeEditModal} onSuccess={handleSuccessfulEdit} userID={userId} />
+      <EditUser isOpen={isEditing} onClose={closeEditModal} onSuccess={handleSuccessfulEdit} userID={userId} />
     )
   );
 }

@@ -11,20 +11,20 @@ import { putUser } from "../service/Axios.jsx";
 * Una función que actualiza todas las incidencias una vez creada la nueva, y una llamada a una función para establecer
 * un comportamiento si funciona todo con exito.
 */
-const EditUser = ({ isOpen, onClose, onSuccess, idUser }) => {
-  console.log(onSuccess);
+const EditUser = ({ isOpen, onClose, onSuccess, userID }) => {
   // Esta constante se trata del documento con los datos necesarios para la creación del usuario.
   const UserRef = useRef({
     "username": '',
     "password": '',
-    "rol": 'Admin'
+    "email": '',
+    "rol": ''
   });
 
   /*
   * Comprobacion de si el usuario actual es admin
   */
-  let admin = true;
-  if (idUser === '1') admin = false;
+  let admin = false;
+  if (userID === '1') admin = true;
 
   /*
   * Almacena las opciones que tiene el InputSelector
@@ -47,9 +47,6 @@ const EditUser = ({ isOpen, onClose, onSuccess, idUser }) => {
     else if (name === 'Contraseña') { newName = "password"; }
     else if (name === 'Rol') { newName = "rol"; }
 
-    console.log(newValue);
-    console.log(newName);
-    console.log(UserRef.current[newName] = newValue);
     UserRef.current[newName] = newValue;
   }
   /*
@@ -59,26 +56,29 @@ const EditUser = ({ isOpen, onClose, onSuccess, idUser }) => {
   */
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(UserRef.current)
     // Utiliza la función del axios para mandar el usuario a la base de  datos.
-    putUser(idUser, JSON.stringify(UserRef.current))
+    putUser(JSON.stringify(UserRef.current), userID)
       .then(response => {
         console.log('Usuario modificado con ID:', response.data.id);
         onClose(); // Cierra el diálogo después de éxito
         setTimeout(() => {
                   window.location.reload(); // Hace un refresh a la página tras 1 segundo
-        }, 100000);
+        }, 1000);
         onSuccess('Usuario editado con éxito.'); // Sale la pequeña notificación.
       })
       .catch(error => {
         console.error('Error al modificar el usuario:', error);
       });
-    onClose();
   };
 
   const handleClose = () => {
     // Solo cierra el diálogo si showAlert es falso
+    console.log(onClose);
     onClose();
   };
+
+  if (!isOpen) return null; // No renderizar nada si el modal debe estar cerrado
 
   // Constante para actualizar el valor rol cada vez que lo cambian en el InputSelector
   const handleSelectorChange = (newValue) => {
@@ -94,12 +94,12 @@ const EditUser = ({ isOpen, onClose, onSuccess, idUser }) => {
         React.createElement('label', { className: 'dialog-title' }, 'Nombre',),
         React.createElement('input', { className: 'dialog-description', onBlur: handleOnChange.bind(null, 'Nombre') }),
         React.createElement('br'),
-        admin && React.createElement('label', { className: 'dialog-title' }, 'Contraseña',),
-        admin && React.createElement('input', { className: 'dialog-description', type: 'password', onBlur: handleOnChange.bind(null, 'Contraseña') }),
-        admin && React.createElement('br'),
-        admin && React.createElement('label', { className: 'dialog-title' }, 'Rol',),
-        admin && React.createElement('br'),
-        admin && React.createElement(InputSelector, {name: 'Estado', data: stateOptions, onChange: handleOnChange.bind(null, 'Rol'), onBlur: null, id: `Estados`}),
+        !admin && React.createElement('label', { className: 'dialog-title' }, 'Contraseña',),
+        !admin && React.createElement('input', { className: 'dialog-description', type: 'password', onBlur: handleOnChange.bind(null, 'Contraseña') }),
+        !admin && React.createElement('br'),
+        !admin && React.createElement('label', { className: 'dialog-title' }, 'Rol',),
+        !admin && React.createElement('br'),
+        !admin && React.createElement(InputSelector, {name: 'Estado', data: stateOptions, onChange: handleOnChange.bind(null, 'Rol'), onBlur: null, id: `Estados`}),
         React.createElement('br'),
         React.createElement('button', { className: 'button-group dialog-button', type: 'submit' }, 'Enviar')
       )

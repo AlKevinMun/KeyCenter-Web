@@ -31,7 +31,7 @@ export const deleteUser = (id) => {
     return axiosInstance.delete(`/users/${id}`);
 };
 // Función para actualizar una usuario
-export const putUser = (id, data) => {
+export const putUser = (data, id) => {
     return axiosInstance.put(`/users/${id}`, data);
 };
 // Función para llamar a la autenticación
