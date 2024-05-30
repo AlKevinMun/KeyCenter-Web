@@ -29,12 +29,10 @@ const EditKey = ({ isOpen, onClose, onRefresh, onSuccess, keyID }) => {
   useEffect(() => {
     getUser()
      .then(users => {
-       console.log(users)
         const formattedUserOptions = users.data.map(user => ({
           value: user.id,
           label: user.username
         }));
-        console.log(formattedUserOptions);
         setUserOptions(formattedUserOptions);
       })
      .catch(error => {

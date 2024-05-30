@@ -1,38 +1,25 @@
-/*
-.main-container{
-	margin-left: 100px;
-	margin-right: 100px;
-	margin-top: 50px;
-	margin-bottom: 50px;
-  }
- */
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 .container-label {
     margin: 0;
     font-size: 30px;
 }
-
 .form-title {
     margin: 0;
     font-size: 30px;
     text-align: center;
 }
-
 .container-label-line {
     color: #EF902A;
     margin-bottom: 1em;
 }
-
 .container-label-line1 {
     color: #D8D8D8;
     margin-bottom: 1em;
 }
-
 .input-group {
     display: block;
     vertical-align: top;
@@ -42,23 +29,8 @@ body {
     width: 100%;
 }
 
-/*
-.input-group:nth-child(1),
-.input-group:nth-child(5),
-.input-group:nth-child(9){
-	margin-right: 3.33%;
-	margin-left: 0;
-}
-.input-group:nth-child(4),
-.input-group:nth-child(8),
-.input-group:nth-child(12){
-	margin-right: 0;
-	margin-left: 3.34%;
-}
-*/
 .input-label {
     display: block;
-    /*margin-bottom: 10px; TOCADO PARA COSAS DE INCIDENCIAS*/
     width: 100%;
 }
 
@@ -126,45 +98,8 @@ body {
     display: inline-block;
 }
 
-.icon-plus {
-    display: inline-block;
-    font-size: 24px;
-    color: #808080;
-}
-
-/* Estilo para los checkboxes */
-.check-group {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 30px;
-}
-
-.checkbox-label {
-    display: inline-block;
-    font-size: 12px;
-    font-style: normal;
-    vertical-align: middle;
-    margin: 0;
-    margin-left: 3.33%;
-    margin-right: 3.33%;
-}
-
-.input[type="checkbox"] {
-    vertical-align: middle;
-    height: 30px;
-    width: 14px;
-}
-
 .input[type="text"] {
     width: 88%;
-}
-
-.check-page4 {
-    display: block;
-    justify-content: center;
-    align-items: center;
-    padding-top: 0;
 }
 
 .submit-container {
@@ -172,30 +107,6 @@ body {
     justify-content: flex-end;
     padding-bottom: 7.5%;
     padding-top: 5%;
-}
-
-.cancel-button {
-    background-color: white;
-    color: red;
-    border: 2px solid red;
-    padding: 10px 50px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 10px;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-.save-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px 50px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 10px;
-    display: inline-block;
-    border-radius: 5px;
 }
 
 .button {
@@ -209,7 +120,6 @@ body {
     cursor: pointer;
     background-color: white;
 }
-
 
 .button:hover {
     background-color: #F7E8E5;
@@ -249,6 +159,11 @@ body {
 .menu-login {
     position: absolute;
     right: 2em;
+    bottom: 10px;
+}
+.menu-users {
+    position: absolute;
+    right: 7em;
     bottom: 10px;
 }
 
@@ -441,9 +356,11 @@ body {
     padding: 0;
     margin: 0;
 }
+
 .container-TableElements{
   padding-left: 0px;
 }
+
 .Refresh-Button {
     display: inline-block;
     padding: 0;
@@ -500,7 +417,6 @@ body {
     padding: 1%;
 }
 
-
 .dialog-overlay {
   position: fixed; /* Asegura que el overlay tenga posición relativa al viewport */
   top: 0;
@@ -542,12 +458,10 @@ body {
     position: relative;
 }
 
-
 .dialog-title {
     font-weight: bold;
     margin-top: 10px;
 }
-
 
 .dialog-description {
     width: calc(100% - 20px);
@@ -562,8 +476,8 @@ body {
 }
 
 .input[type=password] {
-width: calc(100% - 55px);
-max-width: calc(100% - 55px);
+  width: calc(100% - 55px);
+  max-width: calc(100% - 55px);
 }
 
 .dialog-button {
@@ -583,14 +497,6 @@ max-width: calc(100% - 55px);
     border: none;
     font-size: 24px;
     cursor: pointer;
-}
-
-.IncidenceMore {
-
-}
-
-.IncidenceMore_Content {
-
 }
 
 .IncidenceMore_CloseBtn {
@@ -627,6 +533,7 @@ max-width: calc(100% - 55px);
 .IncidenceMore_User {
   margin-bottom: 50px;
 }
+
 .IncidenceMore_ButtonEdit{
   position: absolute;
   left: 5%;
@@ -635,7 +542,6 @@ max-width: calc(100% - 55px);
   position: absolute;
   right: 5%;
 }
-
 
 .eleccion-container {
     border: 1px solid #B3B3B3;
@@ -655,7 +561,6 @@ max-width: calc(100% - 55px);
 
 @font-face {
     font-family: 'seat';
-    src: url('resources/font/seat_bcn_black.ttf') format('truetype');
 }
 
 .text-manual {
@@ -675,7 +580,7 @@ max-width: calc(100% - 55px);
 }
 
 .success-message {
-  position: fixed; /* Cambiado de absolute a fixed */
+  position: fixed;
   bottom: 20px;
   right: 20px;
   padding: 10px;
@@ -699,4 +604,68 @@ max-width: calc(100% - 55px);
 .qr-code-image{
   margin: 0px;
   padding: 0px;
+}
+/* Aqui elimino el mio */
+.menu-users {
+    position: absolute;
+    right: 7em;
+    bottom: 10px;
+}
+
+.UserMore {
+
+}
+
+.UserMore_Content {
+
+}
+
+.UserMore_CloseBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.UserMore_Title {
+  margin-bottom: 10px;
+}
+
+.UserMore_Email {
+  margin-bottom: 10px;
+}
+.UserMore_DescriptionGeneral {
+  position: relative;
+  padding-bottom: 10%
+}
+
+.UserMore_Rol {
+  display: inline-block;
+  margin-bottom: 10px;
+  position: absolute;
+  right: 0;
+  top: 0%;
+}
+
+.UserMore_User {
+  margin-bottom: 50px;
+}
+.UserMore_ButtonEdit{
+  position: absolute;
+  left: 5%;
+  bottom: 10%;
+}
+.UserMore_ButtonDelete{
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+}
+
+.perfil-image{
+  width: 10%;
+  display: inline-block;
+  margin-bottom: 10px;
+  position: absolute;
+  right: -2%;
+  top: 10%;
 }
