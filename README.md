@@ -2,21 +2,21 @@
 
 
 ## Índex
-* ### [Pas 1: Base de dades](#Pas 1:Base de dades)
+* ### [Pas 1: Base de dades](#Pas1:Base de dades)
   * ### [Instal·lació i creació base de dades](#install_database)
   * ### [Configuració PostgreSQL](#config_database)
   * ### [Creació taules](#create_tables)
-* ### [Pas 2: API](#Pas 2:Api)
+* ### [Pas 2: API](#Pas2:Api)
   * ### [Descarregar API](#download_API)	
   * ### [Configuració API](#config_API)
-* ### [Pas 3: Servidor Nginx](#Pas 3:Servidor Nginx) 
+* ### [Pas 3: Servidor Nginx](#Pas3:Servidor Nginx) 
   * ### [Instal·lació Nginx](#install_nginx)
   * ### [Configuració Nginx](#config_nginx)
-* ### [Pas 4: Servidor React](#Pas 4:Servidor React)
+* ### [Pas 4: Servidor React](#Pas4:Servidor React)
   * ### [Instal·lació React](#install_react)
   * ### [Configuració React](#config_react)
 
-## Pas 1: Base de dades <a name="Pas 1:Base de dades"></a>
+## Pas 1: Base de dades <a name="Pas1:Base de dades"></a>
 
 ### Instal·lació i creació base de dades. <a name="install_database"></a>
 
@@ -93,7 +93,7 @@ public | users_seq 	| sequence | usuario
 (6 rows)
 ```
 
-## Pas 2: API <a name="Pas 2:Api"></a>
+## Pas 2: API <a name="Pas2:Api"></a>
 ### Descarregar API <a name="download_API"></a>
 
 Descarregar **l'API** és una tasca sense dificultat, només s'ha d'accedir al següent github i en l’apartat de codi donar-li a descarregar zip o clonar el directori.
@@ -118,7 +118,7 @@ password: password
 
 
 
-## Pas 3: Servidor Nginx <a name="Pas 3:Servidor Nginx"></a>
+## Pas 3: Servidor Nginx <a name="Pas3:Servidor Nginx"></a>
 ### Instal·lació Nginx <a name="install_nginx"></a>
 
 Per instal·lar el servidor **Nginx** el primer que s'ha de fer les següents comandes en el terminal.
@@ -279,7 +279,7 @@ sudo nginx -s reload
 sudo systemctl status nginx
 ```
 
-## Pas 4: Servidor React <a name="Pas 4:Servidor React"></a>
+## Pas 4: Servidor React <a name="Pas4:Servidor React"></a>
 ### Instal·lació React <a name="install_react"></a>
 
 Primer que tot és necessari descarregar **node** amb el seu distribuïdor de paquets (**npm**).
