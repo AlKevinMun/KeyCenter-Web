@@ -77,6 +77,7 @@ deuria. Per això farà falta que et connectes a la base de dades de la següent
 ### Creació taules <a name="create_tables"></a>
 
 Primer que tot és necessari connectar-se a la base de dades amb la instrucció anterior. Una vegada fet, entra al següent enllaç per còpia i pegar tot el contingut del .sql.
+
 https://github.com/AlKevinMun/KeyCenter/blob/main/Api/KeyCenter.sql
 
 La base de dades hauria de tindre aquest aspecte:

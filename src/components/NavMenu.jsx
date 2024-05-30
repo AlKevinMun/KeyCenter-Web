@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Alert from './Alert'; // Importa el componente Alert
 
@@ -35,7 +35,7 @@ function NavMenu() {
                            <Link to="/Usuarios" className="menu-link"><strong>Usuarios</strong></Link>
                        </li>;
             case 'Usuario':
-                return <li className="menu-element">Elemento para usuarios</li>;
+                return;
             default:
                 return null; // No muestra nada si el rol no coincide con ninguno esperado
         }
@@ -46,17 +46,16 @@ function NavMenu() {
       return (
         <li className="menu-element menu-login">
           <Link to="/Perfil" className="menu-link"><strong>Perfil</strong></Link>
-            </li>
-          );
+        </li>
+      );
     }
     else {
       return (
           <li className="menu-element menu-login">
-              <Link to="/SignIn" className="menu-link"><strong>Log In</strong></Link>
+              <Link to="/SignIn" className="menu-link"><strong>Iniciar sesión</strong></Link>
           </li>
       );
     }
-    return null;
   }
 
     // Asumiendo que tienes acceso al rol del usuario en algún lugar, por ejemplo, desde sessionStorage

@@ -66,7 +66,7 @@ function SignIn() {
               NavRoute(),
               React.createElement('div', { className:'sign-container' },
                   React.createElement('div', { className: 'data-container' },
-                      TitleForm('Sign in'),
+                      TitleForm('Iniciar sesión'),
                       React.createElement('form', { className: 'form-container', onSubmit: handleSubmit },
                           React.createElement('div', {className: 'signform-container' },
                               InputText('Correo electronico', handleUsernameChange, {value: email }),

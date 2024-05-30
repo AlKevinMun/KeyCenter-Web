@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Logo from "../components/Logo.jsx";
 import NavMenu from "../components/NavMenu.jsx";
@@ -9,7 +9,7 @@ import ServiceKey from "../components/ServiceKeys.jsx";
 import AddButton from "../components/AddButton.jsx";
 import SuccessMessage from "../components/SuccessMessage.jsx";
 import EditKey from "../components/EditKey.jsx"; // Asumiendo que existe un componente para editar llaves
-import { getKeyById, getUser, getQrById, deleteKey } from "../service/Axios.jsx"; // Asumiendo que hay funciones para interactuar con llaves
+import { getKeyById, getUser, getQrById, deleteKey, putKey } from "../service/Axios.jsx"; // Asumiendo que hay funciones para interactuar con llaves
 
 function ShowKeys() {
   const { keyId } = useParams();
@@ -20,8 +20,13 @@ function ShowKeys() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
   const [successMessage, setSuccessMessage] = useState('');
-  // Nueva variable de estado para gestionar la visibilidad del modal de edición.
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false); //Estado para gestionar la visibilidad del modal de edición.
+  const [showCameraButtons, setShowCameraButtons] = useState(false); //Estado para controlar la visibilidad de los botones de la cámara
+  const KeyRef = useRef({
+    "user_id": 1,
+  });
+  const videoRef = useRef();
+
   let keyState = '';
 
   // Función para alternar la visibilidad modal de edición
@@ -133,6 +138,22 @@ function ShowKeys() {
     }
   };
 
+  const handleLeave = (e) => {
+    e.preventDefault();
+    // Utiliza la función del axios para mandar la incidencia a la base de  datos.
+    putKey(JSON.stringify(KeyRef.current), key.id)
+     .then(response => {
+        // Se resetean los valores del UseRef
+        setTimeout(() => {
+          window.location.reload(); // Hace un refresh a la página tras 1 segundo
+        }, 1000);
+        handleSuccessfulEdit('Llave almacenada con éxito.'); // Sale la pequeña notificación.
+      })
+     .catch(error => {
+        console.error('Error al traspasar la llave:', error);
+     });
+  };
+
   // Función para determinar el color del texto basado en el status
   const getStatusColor = () => {
       switch (keyState) {
@@ -153,6 +174,23 @@ function ShowKeys() {
     };
 
   const statusStyle = { color: getStatusColor() };
+
+    // Función para manejar el click en el botón de escanear
+    const handleScanButtonClick = () => {
+      setShowCameraButtons(true);
+    };
+
+    // Función para manejar el acceso a la cámara
+    const handleCameraAccess = async (buttonID) => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        // Aquí puedes usar el stream para mostrar la vista previa de la cámara o procesar el video
+        videoRef.current.srcObject = stream;
+        console.log(stream);
+      } catch (err) {
+        console.error("Error al acceder a la cámara", err);
+      }
+    };
 
   // Metodo para saber si el usuario activo es el mismo que el de la llave
 
@@ -177,8 +215,13 @@ return React.createElement('div', { className: 'main-container', style: require(
               React.createElement('div',{className: 'qr-container'},
                 qr && React.createElement('img', { src: qr, alt: 'QR Code', className: 'qr-code-image' }), // Muestra la imagen del QR
               ),
+              React.createElement('video', { ref: videoRef, autoPlay: true, muted: true }),
               admin && AddButton('Traspasar llave', 'button-group IncidenceMore_ButtonEdit', openEditModal),
-              admin && AddButton('Borrar llave', 'button-group IncidenceMore_ButtonDelete', handleDelete)
+              sameUser && AddButton('Dejar llave', 'button-group IncidenceMore_ButtonLeave', handleLeave),
+              AddButton('Escanear QR', 'button-group IncidenceMore_ButtonScan', handleScanButtonClick),
+              admin && AddButton('Borrar llave', 'button-group IncidenceMore_ButtonDelete', handleDelete),
+              showCameraButtons && AddButton('Recoger llave', 'button-group IncidenceMore_ButtonPick', handleCameraAccess),
+              showCameraButtons && AddButton('Traspasar llave via QR', 'button-group IncidenceMore_ButtonEditQR', handleCameraAccess),
             ),
           ),
         ),

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useParams} from "react-router-dom";
 import Logo from "../components/Logo.jsx";
 import NavMenu from "../components/NavMenu.jsx";
 import NavRoute from "../components/NavRoute.jsx";
@@ -8,9 +7,8 @@ import TitleForm from "../components/TitleForm.jsx";
 import ServiceKey from "../components/ServiceKeys.jsx";
 import AddButton from "../components/AddButton.jsx";
 import SuccessMessage from "../components/SuccessMessage.jsx";
-import EditUser from "../components/EditUser.jsx";
 import TableList from "../components/TableList.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getUserById, getQrById, getKey } from "../service/Axios.jsx";
 
 function Perfil() {
@@ -112,7 +110,7 @@ function Perfil() {
             TitleForm(user.username),
             React.createElement('div', { className: 'UserMore_DescriptionGeneral'},
             React.createElement('p', { className: 'UserMore_Rol' }, user.rol),
-            React.createElement('img', { src: '../../resources/logo.png', className: 'perfil-image', alt: 'perfil', className: 'perfil-image' }),
+            React.createElement('img', { src: '../../resources/logo.png', className: 'perfil-image', alt: 'perfil' }),
             React.createElement('p', { className: 'UserMore_Email' }, 'Correo electrónico: ', user.email),
             React.createElement('div',{className: 'qr-container'},
               qr && React.createElement('img', { src: qr, alt: 'QR Code', className: 'qr-code-image' }),
