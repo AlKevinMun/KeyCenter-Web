@@ -14,6 +14,7 @@ import ShowIncidence from "./pages/ShowIncidence.jsx"
 import ShowKeys from "./pages/ShowKeys.jsx"
 import ShowUser from "./pages/ShowUser.jsx"
 import UsersMain from "./pages/UsersMain.jsx"
+import Perfil from "./pages/Perfil.jsx"
 
   function App() {
     return React.createElement(Routes, null,
@@ -30,6 +31,7 @@ import UsersMain from "./pages/UsersMain.jsx"
             React.createElement(Route, {path:"/SignIn", element: SignIn() }),
             React.createElement(Route, {path:"/Ayuda", element: Ayuda() }),
             React.createElement(Route, {path:"/Usuarios", element: UsersMain() }),
+            React.createElement(Route, {path:"/Perfil", element: Perfil() }),
     );
   }
   

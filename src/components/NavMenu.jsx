@@ -41,6 +41,24 @@ function NavMenu() {
         }
     }
 
+  const showSignInLink = () => {
+    if (isLoggedIn) {
+      return (
+        <li className="menu-element menu-login">
+          <Link to="/Perfil" className="menu-link"><strong>Perfil</strong></Link>
+            </li>
+          );
+    }
+    else {
+      return (
+          <li className="menu-element menu-login">
+              <Link to="/SignIn" className="menu-link"><strong>Log In</strong></Link>
+          </li>
+      );
+    }
+    return null;
+  }
+
     // Asumiendo que tienes acceso al rol del usuario en algún lugar, por ejemplo, desde sessionStorage
     const loginUser = JSON.parse(sessionStorage.getItem('loginUser')) || {};
     const role = loginUser.rol || '';
@@ -63,9 +81,7 @@ function NavMenu() {
                         <li className="menu-element">
                             <Link to="/Manuales" className="menu-link"><strong>Manuales</strong></Link>
                         </li>
-                        <li className="menu-element menu-login">
-                            <Link to="/SignIn" className="menu-link"><strong>Log In</strong></Link>
-                        </li>
+                        {showSignInLink()} {/* Muestra el enlace de Sign In si el usuario no está logueado o si no el Perfil de usuario */}
                         {isLoggedIn && showElementBasedOnRole(role)} {/* Muestra elementos específicos basados en el rol del usuario si está logueado */}
                     </ul>
                 </div>
