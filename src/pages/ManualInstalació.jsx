@@ -407,12 +407,17 @@ sudo npm i react-scripts`
             ),
             React.createElement('p', { className: 'manualBody' },
               'Després de descarregar ',
-              React.createElement('strong', null, 'React'),
+              React.createElement('strong', null, 'React '),
               React.createElement('a' , { href: 'https://github.com/AlKevinMun/KeyCenter-Web' , className: 'manualBody' }, 'https://github.com/AlKevinMun/KeyCenter/')
             ),
             React.createElement('p', { className: 'manualBody' },'Per finalitzar, per comprovar el funcionament serà necessari anar a la ubicació del projecte, i dins la carpeta KeyCenter-Web, fer servir la següent comanda:'),
             React.createElement('pre', null,
               React.createElement('code', null,`sudo npm start`)
+            ),
+            React.createElement('p', { className: 'manualBody' },
+             'Aquesta comanda t\'enviarà a localhost:3000. A causa de l\'ús del ',
+             React.createElement('strong', null, 'Nginx '),
+             'no és necessari posar el port, és més, fer servir el port donarà errors.',
             ),
             React.createElement('h2', { id: 'pas4.2', className: 'ManualH2' }, 'Configuració React'),
             React.createElement('p', { className: 'manualBody' },

@@ -42,6 +42,8 @@ function ShowUser() {
   const currentUserId = sessionStorage.getItem('loginUser')? JSON.parse(sessionStorage.getItem('loginUser')).id : '';
   let sameUser = false;
   if (currentUserRole === 'Admin') admin = true;
+  let num1 = false;
+  if (currentUserId === 1) num1 = true;
 
   // Función para obtener el usuario que se va a mostrar
   useEffect(() => {
@@ -121,8 +123,8 @@ function ShowUser() {
             React.createElement('div',{className: 'qr-container'},
               qr && React.createElement('img', { src: qr, alt: 'QR Code', className: 'qr-code-image' }),
             ),
-            admin && AddButton('Editar usuario', 'button-group UserMore_ButtonEdit', openEditModal),
-            admin && AddButton('Borrar usuario', 'button-group UserMore_ButtonDelete', handleDelete),
+            !num1 && AddButton('Editar usuario', 'button-group UserMore_ButtonEdit', openEditModal),
+            !num1 && AddButton('Borrar usuario', 'button-group UserMore_ButtonDelete', handleDelete),
           ),)
         ),
       ),

@@ -315,6 +315,7 @@ Per finalitzar, per comprovar el funcionament serà necessari anar a la ubicaci�
 
 ```sudo npm start```
 
+Aquesta comanda t'enviarà a localhost:3000. A causa de l'ús del
 
 ### Configuració React <a name="config_nginx"></a>
 
