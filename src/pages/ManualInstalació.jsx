@@ -147,7 +147,7 @@ GRANT ALL PRIVILEGES ON DATABASE "keycenter" to usuario;`
             React.createElement('h2', { id: 'pas1.3', className: 'ManualH2' }, 'Creació taules'),
             React.createElement('p', { className: 'manualBody' },
               'Primer que tot és necessari connectar-se a la base de dades amb la instrucció anterior. Una vegada fet, entra al següent enllaç per còpia i pegar tot el contingut del .sql.',
-              React.createElement('a' , { href: 'https://github.com/AlKevinMun/KeyCenter/blob/main/Api/KeyCenter.sql' , className: 'manualBody' }, 'https://github.com/AlKevinMun/KeyCenter/blob/main/Api/KeyCenter.sql')
+              React.createElement('a' , { href: 'https://github.com/AlKevinMun/KeyCenter-Api/blob/main/keycenter-api/src/main/resources/KeyCenter.sql' , className: 'manualBody' }, 'https://github.com/AlKevinMun/KeyCenter-Api/blob/main/keycenter-api/src/main/resources/KeyCenter.sql')
             ),
             React.createElement('p', { className: 'manualBody' },'La base de dades hauria de tindre aquest aspecte:'),
             React.createElement('pre', null,
@@ -277,7 +277,8 @@ server {
 
   location /api {
     	proxy_pass http://127.0.0.1:8080;
-  }`
+  }
+}`
               )
             ),
             React.createElement('p', { className: 'manualBody' },
@@ -372,15 +373,12 @@ sudo systemctl status nginx`
             React.createElement('h1', { id: 'pas4', className: 'ManualH1' }, 'Pas 4: Servidor React'),
             React.createElement('h2', { id: 'pas4.1', className: 'ManualH2' }, 'Instal·lació React'),
             React.createElement('p', { className: 'manualBody' },
-              'Primer que tot és necessari descarregar ',
-              React.createElement('strong', null, 'node'),
-              ' amb el seu distribuïdor de paquets (',
-              React.createElement('strong', null, 'npm'),
-              ').'
+              'Primer que tot és necessari descarregar el distribuïdor de paquets de ',
+              React.createElement('strong', null, 'node (npm).')
             ),
             React.createElement('pre', null,
               React.createElement('code', null,
-`sudo apt install node -y
+`sudo apt update -y
 
 sudo apt install npm -y`
               )
@@ -401,7 +399,7 @@ sudo apt install npm -y`
             React.createElement('pre', null,
               React.createElement('code', null,
 `sudo npm i react-dom
-sudo npm i react-route-dom
+sudo npm i react-router-dom
 sudo npm i axios
 sudo npm i react-intersection-observer
 sudo npm i react-scripts`

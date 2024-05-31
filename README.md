@@ -78,7 +78,7 @@ deuria. Per això farà falta que et connectes a la base de dades de la següent
 
 Primer que tot és necessari connectar-se a la base de dades amb la instrucció anterior. Una vegada fet, entra al següent enllaç per còpia i pegar tot el contingut del .sql.
 
-https://github.com/AlKevinMun/KeyCenter/blob/main/Api/KeyCenter.sql
+https://github.com/AlKevinMun/KeyCenter-Api/blob/main/keycenter-api/src/main/resources/KeyCenter.sql
 
 La base de dades hauria de tindre aquest aspecte:
 
@@ -199,6 +199,7 @@ listen [::]:80;
 	location /api {
     	proxy_pass http://127.0.0.1:8080;
 	}
+}
 ```
 
 En aquest cas el primer location es tracta del servidor **React**, el segon del endpoint del Auth de **l'API**, i l’últim del endpoint pare de tots els altres endpoints de **l'API.**
@@ -284,7 +285,7 @@ sudo systemctl status nginx
 ## Pas 4: Servidor React <a name="Pas4:Servidor_React"></a>
 ### Instal·lació React <a name="install_react"></a>
 
-Primer que tot és necessari descarregar **node** amb el seu distribuïdor de paquets (**npm**).
+Primer que tot és necessari descarregar el distribuïdor de paquets de **node (npm)**.
 ```
 sudo apt update -y
 sudo apt install node -y
@@ -299,7 +300,7 @@ Un cop ja amb npm, s'instal·la **React** fem ús d'aquest distribuïdor de paqu
 Després de descarregar **React**, es descarreguen totes les dependències necessàries en aquesta línia:
 ```
 sudo npm i react-dom
-sudo npm i react-route-dom
+sudo npm i react-router-dom
 sudo npm i axios
 sudo npm i react-intersection-observer
 sudo npm i react-scripts
