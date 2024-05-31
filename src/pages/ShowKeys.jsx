@@ -186,7 +186,6 @@ function ShowKeys() {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         // Aquí puedes usar el stream para mostrar la vista previa de la cámara o procesar el video
         videoRef.current.srcObject = stream;
-        console.log(stream);
       } catch (err) {
         console.error("Error al acceder a la cámara", err);
       }

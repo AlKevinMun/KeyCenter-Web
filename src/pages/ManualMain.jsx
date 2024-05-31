@@ -22,20 +22,14 @@ function MainPage() {
           TitleForm('Manuales'),
           React.createElement(Link, { to: "/Manuales/ManualUso", className: "menu-link" },
             React.createElement('div', { className: 'eleccion-container' },
-              ManualIcon('resources/manualicon.png', 'USO', 'text-manual'),
+              ManualIcon('resources/manualicon.png', 'US', 'text-manual'),
               React.createElement('p', { className: 'manual-text' }, 'Manual de uso')
             )
           ),
-          React.createElement(Link, { to: "/Manuales/ManualUsuario", className: "menu-link"  },
+          React.createElement(Link, { to: "/Manuales/ManualInstalació", className: "menu-link"  },
             React.createElement('div', { className: 'eleccion-container' },
-              ManualIcon('resources/manualicon.png', 'USU', 'text-manual'),
-              React.createElement('p', { className: 'manual-text' }, 'Manual de usuario')
-            )
-          ),
-          React.createElement(Link, { to: "/Manuales/ManualAdministracion", className: "menu-link"  },
-            React.createElement('div', { className: 'eleccion-container' },
-              ManualIcon('resources/manualicon.png', 'AD', 'text-manual'),
-              React.createElement('p', { className: 'manual-text' }, 'Manual de administracion')
+              ManualIcon('resources/manualicon.png', 'IN', 'text-manual'),
+              React.createElement('p', { className: 'manual-text' }, 'Manual d\'Instal·lació')
             )
           ),
         ),

@@ -6,18 +6,18 @@ import React from "react";
 */
 function TitleForm(name) {
 
-    let a;
+    let inputStyle;
 
     if (name === "Sign up" || name === "Sign in") {
-        a = 'form-title';
+        inputStyle = 'form-title';
     } else {
-        a = 'container-label';
+        inputStyle = 'container-label';
     }
 
 
     return (
         React.createElement('div', { className: 'title-container' },
-            React.createElement('p', { className: a }, name),
+            React.createElement('p', { className: inputStyle }, name),
             React.createElement('hr', { className: 'container-label-line' }),
         )
     );

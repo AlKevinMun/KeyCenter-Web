@@ -36,7 +36,6 @@ function Perfil() {
         if (idUser) {
           try {
             const response = await getUserById(idUser);
-            console.log(response.data);
             setUser(response.data);
           } catch (error) {
             console.error("Error al obtener el usuario:", error);

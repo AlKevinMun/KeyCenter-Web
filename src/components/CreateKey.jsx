@@ -31,9 +31,6 @@ const CreateKey = ({ isOpen, onClose, onRefresh, onSuccess}) => {
     if (name === 'Identificador') { newName = "id"; }
     else if (name === 'Nombre del aula') { newName = "room_name"; }
 
-    console.log(newValue);
-    console.log(newName);
-    console.log(KeyRef.current[newName] = newValue);
     KeyRef.current[newName] = newValue;
   }
 

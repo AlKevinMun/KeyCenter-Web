@@ -56,7 +56,6 @@ const EditUser = ({ isOpen, onClose, onSuccess, userID }) => {
   */
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(UserRef.current)
     // Utiliza la función del axios para mandar el usuario a la base de  datos.
     putUser(JSON.stringify(UserRef.current), userID)
       .then(response => {
@@ -74,7 +73,6 @@ const EditUser = ({ isOpen, onClose, onSuccess, userID }) => {
 
   const handleClose = () => {
     // Solo cierra el diálogo si showAlert es falso
-    console.log(onClose);
     onClose();
   };
 

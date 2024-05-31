@@ -21,13 +21,8 @@
         "icon": "resources/folderIcon.png"
       },
       {
-        "path": "/Manuales/ManualUsuario",
-        "name": "Manual de Usuario",
-        "icon": "resources/folderIcon.png"
-      },
-      {
-        "path": "/Manuales/ManualAdministracion",
-        "name": "Manual de Administracion",
+        "path": "/Manuales/ManualInstalació",
+        "name": "Manual de Instalacion",
         "icon": "resources/folderIcon.png"
       }
     ]

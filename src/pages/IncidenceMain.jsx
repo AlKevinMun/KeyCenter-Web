@@ -17,6 +17,7 @@ function MainPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [incidences, setIncidences] = useState([]);
   const [filterState, setFilterState] = useState('all');
+  const [searchQuery, setSearchQuery] = useState(''); // Estado para la búsqueda
   const [selectedIncidence, setSelectedIncidence] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [stateOptions, setStateOptions] = useState([
@@ -36,7 +37,6 @@ function MainPage() {
   const refreshIncidences = async () => {
     try {
       const response = await getIncidence();
-      console.log(response.data);
       setIncidences(response.data);
     } catch (error) {
       console.error("Error al actualizar las incidencias:", error);
@@ -56,11 +56,18 @@ function MainPage() {
   const handleElementClick = (incidence) => {
     setSelectedIncidence(incidence);
   };
+  const handleSearch = (query) => {
+      setSearchQuery(query); // Actualiza el estado de búsqueda
+  };
 
   const filteredIncidences = incidences.filter(incidence => {
-    if (filterState === 'all') return true; // Si el filtro está en 'all', muestra todas las incidencias
-    if (filterState === null) return false; // Si no hay filtro aplicado, no muestra ninguna incidencia
-    return incidence.state === parseInt(filterState); // Compara el estado de la incidencia con el filtro
+    // Filtra por estado si es necesario
+    if (filterState !== 'all') { // Si el filtro está en 'all', muestra todas las incidencias
+      if (incidence.state !== parseInt(filterState)) return false;  // Compara el estado de la incidencia con el filtro
+    }
+    // Filtra por término de búsqueda
+    if (searchQuery && !incidence.topic.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    return true;
   });
 
 
@@ -76,7 +83,7 @@ function MainPage() {
         React.createElement('div', { className: 'data-container' },
           TitleForm('Incidencias'),
           React.createElement('div', { className: 'Search-hooks' },
-            SearchBar('Buscar Incidencias'),
+            React.createElement(SearchBar, { placeholder: 'Buscar incidencias', onSearch: handleSearch }), // Pasar las props necesarias a SearchBar
             React.createElement(InputSelector, {name: 'Estados', data: stateOptions, onChange: handleStateChange, onBlur: null, id: `Estados`}),
           ),
           React.createElement(TableList, { items: filteredIncidences, refreshItems: refreshIncidences }),

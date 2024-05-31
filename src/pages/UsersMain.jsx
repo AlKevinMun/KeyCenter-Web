@@ -15,8 +15,9 @@ import { getUser } from "../service/Axios.jsx";
 function MainPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [users, setUsers] = useState([]);
-  const [filterState, setFilterState] = useState('2');
+  const [filterState, setFilterState] = useState('all'); // Default to 'all' to show all users initially
   const [selectedUser, setSelectedUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(''); //  Estado para la búsqueda
 
   const handleOpenDialog = () => { setIsDialogOpen(true); };
   const handleCloseDialog = () => { setIsDialogOpen(false); };
@@ -28,7 +29,6 @@ function MainPage() {
   const refreshUsers = async () => {
     try {
       const response = await getUser();
-      console.log(response.data);
       setUsers(response.data);
     } catch (error) {
       console.error("Error al actualizar los usuarios:", error);
@@ -39,9 +39,19 @@ function MainPage() {
     setFilterState(event.target.value);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query); // Actualiza el estado de búsqueda
+  };
+
   const handleElementClick = (user) => {
     setSelectedUser(user);
   };
+
+  const filteredUsers = users.filter(user => {
+    // Filtra por término de búsqueda
+    if (searchQuery && !user.username.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    return true;
+  });
 
   return (
     React.createElement('div', { className: 'main-container' },
@@ -55,9 +65,9 @@ function MainPage() {
         React.createElement('div', { className: 'data-container' },
           TitleForm('Usuarios'),
           React.createElement('div', { className: 'Search-hooks' },
-            SearchBar('Buscar usuarios'),
+            React.createElement(SearchBar, { placeholder: 'Buscar usuarios', onSearch: handleSearch }), // Pasar las props necesarias a SearchBar
           ),
-          React.createElement(TableList, { items: users, refreshItems: refreshUsers }),
+          React.createElement(TableList, { items: filteredUsers, refreshItems: refreshUsers }),
           AddButton("Añadir nuevo usuario", 'button-group',handleOpenDialog),
         ),
         React.createElement('div', { className: 'service-keys-container' },

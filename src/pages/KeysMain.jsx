@@ -11,6 +11,7 @@ import TableList from "../components/TableList.jsx";
 import AddButton from "../components/AddButton.jsx";
 import CreateKey from "../components/CreateKey.jsx";
 import SuccessMessage from "../components/SuccessMessage.jsx";
+import { useNavigate } from "react-router-dom";
 import { getKey } from "../service/Axios.jsx";
 
 function MainPage() {
@@ -23,8 +24,9 @@ function MainPage() {
     { value: 'all', label: 'Todas' },
     { value: '0', label: 'Disponibles' },
     { value: '1', label: 'En uso' },
-
   ]);
+
+  const [searchQuery, setSearchQuery] = useState(''); // Estado para la búsqueda
 
   const handleOpenDialog = () => { setIsDialogOpen(true); };
   const handleCloseDialog = () => { setIsDialogOpen(false); };
@@ -36,7 +38,6 @@ function MainPage() {
   const refreshKeys = async () => {
     try {
       const response = await getKey();
-      console.log(response.data);
       setKeys(response.data);
     } catch (error) {
       console.error("Error al actualizar las llaves:", error);
@@ -57,10 +58,17 @@ function MainPage() {
     setSelectedKey(key);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query); // Actualiza el estado de búsqueda
+  };
+
   const filteredKeys = keys.filter(key => {
-    if (filterState === 'all') return true; // Si el filtro está en 'all', muestra todas las llaves
-    if (filterState === '0') return key.user_id === 1; // Si no hay filtro aplicado, no muestra ninguna llaves
-    return key.user_id >1;
+    if (filterState !== 'all') {
+      if (filterState === '0' && key.user_id !== 1) return false;
+      if (filterState === '1' && key.user_id <= 1) return false;
+    }
+    if (searchQuery && !key.room_name.toLowerCase().includes(searchQuery.toLowerCase())) return false; // Filtra por nombre de llave
+    return true;
   });
 
   return (
@@ -75,7 +83,7 @@ function MainPage() {
         React.createElement('div', { className: 'data-container' },
           TitleForm('Llaves'),
           React.createElement('div', { className: 'Search-hooks' },
-            SearchBar('Buscar Llaves'),
+            React.createElement(SearchBar, { placeholder: 'Buscar Llaves', onSearch: handleSearch }), // Pasar las props necesarias a SearchBar
             React.createElement(InputSelector, {name: 'Estados', data: stateOptions, onChange: handleStateChange, onBlur: null, id: `Estados`}),
           ),
           React.createElement(TableList, { items: filteredKeys, refreshItems: refreshKeys }),

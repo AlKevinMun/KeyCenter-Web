@@ -4,8 +4,7 @@ import KeyCenterMain from "./pages/KeyCenterMain.jsx"
 import KeysMain from "./pages/KeysMain.jsx"
 import ManualMain from "./pages/ManualMain.jsx"
 import ManualUso from "./pages/ManualUso.jsx"
-import ManualUsuario from "./pages/ManualUsuario.jsx"
-import ManualAdministracion from "./pages/ManualAdministracion.jsx"
+import ManualInstalació from "./pages/ManualInstalació.jsx"
 import SignIn from "./pages/SignIn.jsx"
 import Ayuda from "./pages/Ayuda.jsx"
 import IncidenceMain from "./pages/IncidenceMain.jsx"
@@ -25,8 +24,7 @@ import Perfil from "./pages/Perfil.jsx"
             React.createElement(Route, {path:"/DetallesUsers/:userId", element: <ShowUser /> }),
             React.createElement(Route, {path:"/Manuales", element: ManualMain() }),
             React.createElement(Route, {path:"/Manuales/ManualUso", element: ManualUso() }),
-            React.createElement(Route, {path:"/Manuales/ManualUsuario", element: ManualUsuario() }),
-            React.createElement(Route, {path:"/Manuales/ManualAdministracion", element: ManualAdministracion() }),
+            React.createElement(Route, {path:"/Manuales/ManualInstalació", element: ManualInstalació() }),
             React.createElement(Route, {path:"/SignIn", element: SignIn() }),
             React.createElement(Route, {path:"/Ayuda", element: Ayuda() }),
             React.createElement(Route, {path:"/Usuarios", element: UsersMain() }),

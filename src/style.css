@@ -214,6 +214,7 @@ body {
 
 .data-container {
     padding: 3em 2em 0 2em;
+    margin: 0 0 100px 0;
 }
 
 .folders-container {
@@ -688,4 +689,25 @@ body {
   position: absolute;
   right: -2%;
   top: 10%;
+}
+.manualBody {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+.manualIndex {
+  margin-bottom: 20px;
+}
+.manualIndex ul {
+  list-style-type: none;
+}
+.manualIndex li {
+  margin: 10px 0;
+}
+pre, code {
+  background-color: black;
+  color: white;
+  font-size: medium ;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 2;
+  padding: 5px;
 }

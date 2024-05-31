@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo.jsx";
-import NavMenu from "../components/NavMenu.jsx"
-import NavRoute from "../components/NavRoute.jsx"
-import FolderTree from "../components/FolderTree.jsx"
-import TitleForm from "../components/TitleForm.jsx"
-import ServiceKey from "../components/ServiceKeys.jsx"
-console.log(sessionStorage);
+import NavMenu from "../components/NavMenu.jsx";
+import NavRoute from "../components/NavRoute.jsx";
+import FolderTree from "../components/FolderTree.jsx";
+import TitleForm from "../components/TitleForm.jsx";
+import ServiceKey from "../components/ServiceKeys.jsx";
 
-/* Forma de obtener el rol del usuario que se encuentra actualmente logeado.
-const loginUserObject = JSON.parse(sessionStorage.loginUser);
-const rol = loginUserObject.rol;
-*/
 function MainPage() {
+  const [firstLoad, setFirstLoad] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (firstLoad || ['/'].includes(location.pathname) || ['/Manuales'].includes(location.pathname) || ['/Manuales/ManualInstalació'].includes(location.pathname) || ['/Manuales/ManualUso'].includes(location.pathname) || ['/SignIn'].includes(location.pathname) || ['/Ayuda'].includes(location.pathname)) {
+      setFirstLoad(false);
+      return;
+    }
+
+    const isLoggedIn = sessionStorage.getItem('token')!== null;
+    if (!isLoggedIn) {
+      navigate("/SignIn");
+    }
+  }, [location]);
+
   return (
     React.createElement('div', { className: 'main-container' },
       Logo('resources/logotipoWeb.png', 'img-container'),

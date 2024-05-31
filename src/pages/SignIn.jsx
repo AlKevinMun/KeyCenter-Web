@@ -33,12 +33,10 @@ function SignIn() {
         event.preventDefault();
         try {
             const response = await auth(LoginRef.current);
-            console.log(response.data);
 
             // Guarda el token y el correo electrónico en sessionStorage
             sessionStorage.setItem('token', response.data);
             const response1 = await getUserByEmail(email);
-            console.log(response1.data);
             sessionStorage.setItem('loginUser', JSON.stringify(response1.data));
 
             navigate('/');

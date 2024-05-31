@@ -9,7 +9,7 @@ const Alert = ({msgError, isOpen, onClose}) => {
 
   let tituloAlert = "";
   if(msgError === "Debes iniciar sesión para acceder a esta página.")
-  {tituloAlert='Falta de autorización'; console.log("jaja bobo")}
+  {tituloAlert='Falta de autorización';}
   else{tituloAlert="Faltan campos por rellenar"}
   if (!isOpen) {
     return null;
